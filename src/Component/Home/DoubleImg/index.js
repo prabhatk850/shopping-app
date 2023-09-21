@@ -4,67 +4,91 @@ import styled from 'styled-components'
 
 const Image= styled.div`
 height: 700px;
-background-color:aqua;
+
 `;
 const Main= styled.div`
+margin-bottom: 80px;
 display: flex;
 justify-content: space-between;
 
 `;
 const Wrapper= styled.div`
+width: 100%;
+&:hover{
+   
+    cursor: pointer;
+}
 
 `;
 const SubTitle=styled.div`
-font-size: 18px;
-padding-left: 30px;
-padding-bottom: 20px;
+font-size: 20.25px;
+padding-left: 49px;
+padding-bottom: 28px;
+color: white;
+&:hover{
+    
+    cursor: pointer;
+}
+
 `;
 
 const Title=styled.div`
-padding: 40px 0 30px 30px;
-font-size: 15pxpx;
+padding: 40px 0 8px 49px;
+font-size: 17.25px;
+color: white;
+&:hover{
+
+    cursor: pointer;
+}
 
 `;
 const Button= styled.button`
 background-color: White;
 color: black;
 width: auto;
-height: 40px;
+height: 42px;
 border-radius: 30px;
-/* align-items: center; */
 border: none;
 outline: none;
-margin: 20px 0;
+
+&:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+
 `;
 
 function index(props) {
   return (
     <Main>
-    <div style={{width:"45px"}}></div>
+    <div style={{width:"90px"}}></div>
     <Wrapper>
-    <Image style={{backgroundImage:(props.img)}}>
-        <Title>
+    <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
+       <div style={{paddingTop:"515px"}}>
+         <Title>
         {props.Title}
         </Title>
         <SubTitle>
         {props.SubTitle}    
         </SubTitle>
-            <div style={{ marginBottom:"30px", marginLeft:"30px"}}><Button style={{padding:"0 20px 0 20px"}} >{props.button}</Button></div>
+            <div style={{ marginBottom:"30px", marginLeft:"49px"}}><Button style={{padding:"0 29px 0 29px",}} >{props.button}</Button></div>
+            </div>
     </Image>
     </Wrapper>
-    <div style={{width:"20px"}}></div>
+    <div style={{width:"30px"}}></div>
     <Wrapper>
-    <Image style={{backgroundImage:(props.img2)}}>
-        <Title>
+    <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
+       <div style={{paddingTop:"515px"}}> <Title>
         {props.Title2}
         </Title>
-        <SubTitle>
+        <SubTitle style={{color:"black"}}>
         {props.SubTitle2}    
         </SubTitle>
-            <div style={{marginBottom:"30px",marginLeft:"30px"}}><Button style={{padding:"0 20px 0 20px"}} >{props.button2}</Button></div>
+            <div style={{marginBottom:"30px",marginLeft:"47px"}}><Button style={{padding:"0 29px 0 29px",backgroundColor:"black",color:"white"}} >{props.button2}</Button></div>
+            </div>
         </Image>
     </Wrapper>
-    <div style={{width:"45px"}}></div>
+    <div style={{width:"90px"}}></div>
     </Main>
   )
 }

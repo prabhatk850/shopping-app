@@ -1,18 +1,32 @@
 import React from 'react'
-// import { useNavigate } from "react-rosuter-dom";
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 
  const Img =styled.img`
  width: 100%;
  height: 700px;
+ &:hover{
+    
+    cursor: pointer;
+}
+
  `;
 
- const Wrapper=styled.div``;
+ const Wrapper=styled.div`
+ &:hover{
+    cursor: pointer;
+}
+`;
  
  const SubTitle=styled.div`
  font-size: 18px;
  text-align: center;
  padding-bottom: 20px;
+ &:hover{
+   
+    cursor: pointer;
+}
+
  `;
  
  const Title=styled.div`
@@ -20,6 +34,11 @@ import styled from 'styled-components'
  padding: 40px 0 30px 0;
  font-size: 80px;
  font-weight: 900;
+ &:hover{
+    
+    cursor: pointer;
+}
+
  `;
  const Button= styled.button`
  background-color: black;
@@ -31,11 +50,16 @@ import styled from 'styled-components'
  border: none;
  outline: none;
  margin: 20px 0;
+ &:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+
  `;
 
-function index(props) {
+function Index(props) {
     
-    // const navigate = useNavigate();
+  let navigate = useNavigate();
   return (
     <Wrapper>
     <div style={{display:"flex"}}>
@@ -49,11 +73,11 @@ function index(props) {
     <SubTitle>
         {props.Title.SubTitle}    
     </SubTitle>
-    <div style={{justifyContent:"center", display: "flex", marginBottom:"30px"}}><Button >Shop</Button></div>
+    <div style={{justifyContent:"center", display: "flex", marginBottom:"30px"}}><Button onClick={()=>{navigate("/product")}}>Shop</Button></div>
 
 
     </Wrapper>
   )
 }
 
-export default index
+export default Index

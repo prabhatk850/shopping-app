@@ -4,6 +4,7 @@ import { LiaHeart } from 'react-icons/lia'
 import { IoBagOutline} from 'react-icons/io5'
 import { RiSearchLine} from 'react-icons/ri'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 const Container=styled.div`
 
@@ -75,11 +76,13 @@ const Hover =styled.div`
 `;
 
 function Header() {
+
+  const navigate=useNavigate()
   return (
     <Container>
       
       <Wrapper>
-      <Hover><SiJordan style={{height:'20px',marginLeft:"50px", width:"20px"}} />
+      <Hover><SiJordan onClick={()=>{navigate("/")}} style={{height:'20px',marginLeft:"50px", width:"20px"}} />
       </Hover>
        <Options1>
         <Field>Find a Store</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
@@ -93,7 +96,7 @@ function Header() {
 
       <Wrapper1>
 
-      <Hover><SiNike style={{height:'60px',marginLeft:"50px",marginRight:"1px", width:"60px"}}/>
+      <Hover><SiNike onClick={()=>{navigate("/")}} style={{height:'60px',marginLeft:"50px",marginRight:"1px", width:"60px"}}/>
       </Hover>
     <Options>
         <Title >New & Feature</Title>
