@@ -20,6 +20,10 @@ const Content=styled.div`
 margin-right: 150px;
 padding-bottom: 15px;
 color: gray;
+&:hover{
+    
+    cursor: pointer;
+}
 
 `;
 
@@ -63,64 +67,64 @@ function Hiddendiv() {
                 Air Force 1
             </Content>
             <Content>
-                Air Force 1
+                Huarahe     
             </Content>
             <Content>
-                Air Force 1
+                Air Force 90
             </Content>
             <Content>
-        Air Force 1
+        Air Force 95
     </Content>
         </Main>
         <Main>
             <Heading>
-                Icons
+                Shoes
             </Heading>
             <Content>
-                Air Force 1
+                All Shoes
             </Content>
             <Content>
-                Air Force 1
+                Custom Shoes
             </Content>
             <Content>
-                Air Force 1
+                Jordan Shoes
             </Content>
             <Content>
-        Air Force 1
+        Running Shoes
     </Content>
         </Main>
         <Main>
             <Heading>
-                Icons
+                Clothing
             </Heading>
             <Content>
-                Air Force 1
+                All Clothing
             </Content>
             <Content>
-                Air Force 1
+                Modest Wear
             </Content>
             <Content>
-                Air Force 1
+                Hoodies & Pullovers
             </Content>
             <Content>
-        Air Force 1
+        Shirt & Tops
     </Content>
         </Main>
         <Main>
             <Heading>
-                Icons
+               Kids'
             </Heading>
             <Content>
-                Air Force 1
+                Infant & Toddler Shoes
             </Content>
             <Content>
-                Air Force 1
+                Kids' Shoes
             </Content>
             <Content>
-                Air Force 1
+                Kids' Jordan Shoes
             </Content>
             <Content>
-        Air Force 1
+        Kids' Basketball Shoes
     </Content>
         </Main>
 

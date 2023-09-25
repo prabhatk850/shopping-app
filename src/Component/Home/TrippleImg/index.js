@@ -8,6 +8,7 @@ height: 540px;
 `;
 const Main= styled.div`
 margin-bottom: 80px;
+padding: 0 15px;
 display: flex;
 justify-content: space-between;
 
@@ -64,7 +65,7 @@ function Index(props) {
     <div style={{width:"90px"}}></div>
     <Wrapper>
     <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"390px"}}>
+       <div style={{paddingTop:"380px"}}>
          <Title>
         {props.Title}
         </Title>
@@ -78,7 +79,7 @@ function Index(props) {
     <div style={{width:"30px"}}></div>
     <Wrapper>
     <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"391px"}}> <Title>
+       <div style={{paddingTop:"380px"}}> <Title>
         {props.Title2}
         </Title>
         <SubTitle style={{color:"White"}}>
@@ -91,7 +92,7 @@ function Index(props) {
     <div style={{width:"30px"}}></div>
     <Wrapper>
     <Image style={{backgroundImage: `url(${props.img3})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"389px"}}>
+       <div style={{paddingTop:"379px"}}>
          <Title>
         {props.Title3}
         </Title>
