@@ -1,32 +1,75 @@
-import React from 'react'
+// import React, { useState } from 'react'
 import styled from 'styled-components'
+import { RiArrowDownSLine } from 'react-icons/ri';
+import { RiArrowUpSLine } from 'react-icons/ri';
+import { useState } from 'react';
 
 const Wrapper= styled.div`
 padding-left: 2px;
 `;
 const Heading= styled.div`
 font-weight:500;
+display :flex ;
+justify-content: space-between;
 padding-top: 10px;
+margin-bottom: 20px;
 
 font-size: 18px;
 `;
-const Button=styled.button`
+const Button=styled.input`
 height: 20px;
 width: 20px;
   border: 4px;
-  border-color: aqua;
+  border-color: gray;
   border-radius: 4px;
-  cursor: pointer;
-  
-`;
+  font-size: 17px;
+  padding: 0 2px 4px 2px;
+  margin-right: 8px;
+  &:hover{cursor: pointer;
+  }
+  `;
+
+  const BData=styled.div`
+  font-size: 18px;
+  width:170px;
+  padding-bottom: 5px;
+  `;
+
+  const Ddown=styled.div`
+  margin-bottom: 10px;
+  `;
+
+
+
 
 function Dropdown(props) {
+  const [accordian,setAccordian]=useState(true)
+
+  const handleAccordian =()=>{
+    setAccordian(!accordian)
+  }
+
+
+ 
   return (
     <Wrapper>
-        <Heading>
-            Gender
+      <div style={{height:"1px",width:"90%",marginTop:"10px",paddingRight:"10px", backgroundColor:"gray"}} ></div>
+        <Heading onClick={handleAccordian}>
+            <div>{props.Title}</div>
+           {accordian?<RiArrowUpSLine style={{paddingRight:"5px",height:"25px",width:"25px"}}/>:<RiArrowDownSLine style={{paddingRight:"5px",height:"25px",width:"25px"}} /> } 
         </Heading>
-        <Button type='checkbox' ></Button>
+        
+        {accordian?<Ddown>
+
+        {props.dummyData.map((e)=>(
+        <BData>
+        <Button  type='checkbox' ></Button>
+         {e.data}
+        </BData>
+        ))}
+
+        </Ddown>:""}
+        
     </Wrapper>
   )
 }

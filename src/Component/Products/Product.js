@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from "./Sidebar"
 import styled from 'styled-components'
 
+
+
+
+const Baap = styled.div`
+
+`;
 const Wrapper = styled.div`
 display: flex;
+overflow: hidden;
 `;
 
 const Subimage = styled.div`
@@ -11,8 +18,14 @@ display: flex;
 height: 30px;
 width: 30px;
 `;
-const Simg = styled.div`
- background-color: aqua;
+const Simg = styled.img`
+ display: none;
+
+  margin-top:20px;
+ width: 50px;
+ height: 30px;
+ 
+
 `;
 
 const Heading = styled.div`
@@ -23,8 +36,8 @@ padding-bottom: 8px;
 const Image = styled.div`
 height:350px;
 width: 350px;
-
 padding-bottom: 10px;
+
 `;
 const Name = styled.div`
 padding-bottom: 5px;
@@ -46,6 +59,9 @@ padding-bottom: 8px;
 `;
 const Div = styled.div`
 height: 520px;
+width: 100%;
+margin-right: 11px;
+padding-bottom: 40px;
 &:hover ${Name}  {
   display: none;
 }
@@ -55,30 +71,167 @@ height: 520px;
 &:hover ${Colourways}  {
   display: none;
 }
+&:hover ${Simg}  {
+  display: block;
+}
+&:hover ${Subimage}  {
+  margin-bottom: 20px;
+}
+
+`;
+
+const MHeading=styled.div`
+margin-right: 5px;
+
+`;
+
+const MHeading1=styled.div`
+margin-left:5px;
+
+`;
+
+const MainHeading=styled.div`
+display: flex;
+`;
+
+const SubHeading=styled.div`
+font-size: 25px;
+font-weight: 500;
+`;
+
+
+const MainContent=styled.div`
+
+`;
+
+const Filters=styled.div`
+display: flex;
+padding-top: 20px;
+`;
+
+const HideFilter=styled.div`
+font-size: 17px;
+margin-right: 20px;
+display: flex;
+align-items: center;
+
+`;
+
+const Sort=styled.div`
+font-size: 17px;
+margin: 5px 0 0 0 ;
+`;
+
+const Header=styled.div`
+display:flex;
+justify-content: space-between;
+margin: 100px 45px 45px;
 `;
 
 function Product(props) {
+  const[filter,SetFilter]=useState(true)
+  
+  const handleFilter=()=>{
+    SetFilter(!filter)
+  }
+  
+
+  const dummyData = [
+    {
+      name:"Nike Tech Hera",
+      type:"Men's Shoes",
+      heading:"",
+      colourways:"1",
+      price:"9 695",
+      pic:"./Product1.jpeg",
+      logo:"./Aor1.jpeg"
+    },
+    {
+      name:"Nike Sportswear Essential",
+      type:"Women's Slim-Fit Crop T-Shirt",
+      heading:"Bestseller",
+      colourways:"2",
+      price:"1 995",
+      pic:"./Product1.jpeg",
+      logo:"./Aor1.jpeg"
+    },
+    {
+      name:"Nike Sportswear",
+      type:"Women's High-Rise Woven Shorts",
+      heading:"",
+      colourways:"1",
+      price:"2 795",
+      pic:"./Product1.jpeg",
+      logo:"./Aor1.jpeg"
+    },
+    {
+      name:"Nike Sportswear",
+      type:"Women's High-Rise Woven Shorts",
+      heading:"",
+      colourways:"1",
+      price:"2 795",
+      pic:"./Product1.jpeg",
+      logo:"./Aor1.jpeg"
+    },
+    {
+      name:"Nike Sportswear",
+      type:"Women's High-Rise Woven Shorts",
+      heading:"",
+      colourways:"1",
+      price:"2 795",
+      pic:"./Product1.jpeg",
+      logo:"./Aor1.jpeg"
+    }
+    
+  ]
   return (
     
-    <Wrapper>
-        <Sidebar C1={"Training & Gym"} C2={"Baseball"} C3={"Nike By you"} />
-        <Div>
-          <Image style={{backgroundImage: `url(${props.Img})`, backgroundSize:"cover"}}></Image>
-          <Subimage>
-           
-            <Simg  style={{backgroundImage: `url(${props.Logo})`, backgroundSize:"cover"}}></Simg>
-            <Simg  style={{backgroundImage: `url(${props.Logo2})`, backgroundSize:"cover"}}></Simg>
-            
-            
-          </Subimage>
-          <Heading>{props.Heading}</Heading>
-          <Name>{props.Name}</Name>
-          <Type>{props.Type}</Type>
-          <Colourways>{props.Colourways}</Colourways>
-          <Price>MRP: ₹ {props.Price}.00</Price>
-        </Div>
+  <Baap>
+    <Header>
+     <MainContent>
+      <MainHeading>
+        <MHeading>{props.MHeading}</MHeading>/  
+        <MHeading1>{props.MHeading1}</MHeading1>
+      </MainHeading>
+      <SubHeading>
+        {props.SubHeading}
+      </SubHeading>
+     </MainContent>
+     <Filters>
+      <HideFilter onClick={handleFilter}>
+        {filter ? "Hide ":"Show "}<div style={{margin:"0 5px"}} >Filter</div> <img style={{height:'30px'}} alt="icon" src='./sliders-horizontal.svg' />
+      </HideFilter> 
+        <Sort>
+          Sort By 
+        </Sort> 
+     </Filters>
+    </Header>
+   <Wrapper>
+      {filter? <Sidebar/>:<div style={{width:"45px"}} />} 
+          <div style={{  display: "grid",width:"100%" ,gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap:"1px", height:"100vh",overflowY:"scroll" }}>
+          {dummyData.map((e)=>(
         
+         
+        <Div >
+            
+          
+          <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover"}}></Image>
+          <Subimage>
+            <Simg src={e.logo}></Simg>  
+          </Subimage>
+          <Heading>{e.heading}</Heading>
+          <Name>{e.name}</Name>
+          <Type>{e.type}</Type>
+          <Colourways>{e.colourways} Colours</Colourways>
+          <Price>MRP: ₹ {e.price}.00</Price>
+       
+
+        </Div>
+        ))}
+       
+         </div> 
     </Wrapper>
+  </Baap>
   )
 }
 
