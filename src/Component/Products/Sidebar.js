@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Dropdown from './Dropdown';
+import { color } from 'framer-motion';
 
 const Wrapper=styled.div`
 height: 100vh ;
@@ -48,18 +49,18 @@ function Sidebar(props) {
       
       ))}
        
-    <Dropdown Title={"Gender"} dummyData={[{data:"Mens"},{data:"Women"},{data:"Kids"}]}/>
-    <Dropdown Title={"Shop By Price"} dummyData={[{data:"₹ 7 501.00 - ₹ 12 999.00 "},{data:"Over ₹ 13 000.00"}]}/>
-    <Dropdown Title={"Sale & Offers"} dummyData={[{data:"Sale"}]}/>
-    <Dropdown Title={"Colour"} dummyData={[{data:"Sale"}]}/>
-    <Dropdown Title={"Brand"} dummyData={[{data:"Nike By You"}]}/>
-    <Dropdown Title={"Icon(1)"} dummyData={[{data:"Air Force 1"},{data:"Air Max"},{data:"Air Rift"},{data:"Blazer"}]}/>
-    <Dropdown Title={"Technology"} dummyData={[{data:"Nike FlyEase"},{data:"Nike React"},{data:"Nike Zoom Air"}]}/>
-    <Dropdown Title={"Closure Type"} dummyData={[{data:"Slip-On"}]}/>
-    <Dropdown Title={"Shoe Height"} dummyData={[{data:"Low Top"}]}/>
-    <Dropdown Title={"Width"} dummyData={[{data:"Regular"}]}/>
-    <Dropdown Title={"Shoe Feel"} dummyData={[{data:"Agile & Flexible"}]}/>
-    <Dropdown Title={"Benefits"} dummyData={[{data:"Easy On & Off"}]}/>
+    <Dropdown Title={"Gender"} dummyData={[{data:"Mens"},{data:"Women"},{data:"Kids"}]} colour={[]} />
+    <Dropdown Title={"Shop By Price"} dummyData={[{data:"₹ 7 501.00 - ₹ 12 999.00 "},{data:"Over ₹ 13 000.00"}]} colour={[]}/>
+    <Dropdown Title={"Sale & Offers"} dummyData={[{data:"Sale"}]} colour={[]}/>
+    <Dropdown Title={"Colour"} dummyData={[]} colour={[{color:"aqua"},{color:"red"}]} />
+    <Dropdown Title={"Brand"} dummyData={[{data:"Nike By You"}]} colour={[]}/>
+    <Dropdown Title={"Icon(1)"} dummyData={[{data:"Air Force 1"},{data:"Air Max"},{data:"Air Rift"},{data:"Blazer"}]} colour={[]}/>
+    <Dropdown Title={"Technology"} dummyData={[{data:"Nike FlyEase"},{data:"Nike React"},{data:"Nike Zoom Air"}]} colour={[]}/>
+    <Dropdown Title={"Closure Type"} dummyData={[{data:"Slip-On"}]} colour={[]}/>
+    <Dropdown Title={"Shoe Height"} dummyData={[{data:"Low Top"}]} colour={[]}/>
+    <Dropdown Title={"Width"} dummyData={[{data:"Regular"}]} colour={[]}/>
+    <Dropdown Title={"Shoe Feel"} dummyData={[{data:"Agile & Flexible"}]} colour={[]}/>
+    <Dropdown Title={"Benefits"} dummyData={[{data:"Easy On & Off"}]} colour={[]}/>
     
     </Wrapper>
   )

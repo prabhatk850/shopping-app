@@ -20,8 +20,8 @@ width: 30px;
 `;
 const Simg = styled.img`
  display: none;
-
-  margin-top:20px;
+margin:0 5px 0 0 ;
+margin-top:20px;
  width: 50px;
  height: 30px;
  
@@ -217,6 +217,9 @@ function Product(props) {
           
           <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover"}}></Image>
           <Subimage>
+            <Simg src={e.logo}></Simg>  
+            <Simg src={e.logo}></Simg>  
+            <Simg src={e.logo}></Simg>  
             <Simg src={e.logo}></Simg>  
           </Subimage>
           <Heading>{e.heading}</Heading>

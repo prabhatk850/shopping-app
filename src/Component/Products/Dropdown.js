@@ -38,6 +38,17 @@ width: 20px;
   const Ddown=styled.div`
   margin-bottom: 10px;
   `;
+  const ColourData=styled.div`
+    display: flex;
+  `;
+  const Colour=styled.div`
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  `;
+  const Title=styled.div`
+  
+  `;
 
 
 
@@ -61,12 +72,20 @@ function Dropdown(props) {
         
         {accordian?<Ddown>
 
-        {props.dummyData.map((e)=>(
-        <BData>
-        <Button  type='checkbox' ></Button>
-         {e.data}
-        </BData>
+        {props?.dummyData.map((e)=>(
+            <BData>
+            <Button  type='checkbox' ></Button>
+            {e.data}
+            </BData>   
         ))}
+<ColourData>
+{props?.colour.map((f)=>(
+       <div>
+          <Colour style={{backgroundColor:`${f.color}`}}></Colour> <Title>{f.color}</Title>  
+        </div>
+        
+        ))}
+        </ColourData>
 
         </Ddown>:""}
         
