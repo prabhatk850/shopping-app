@@ -39,15 +39,18 @@ width: 20px;
   margin-bottom: 10px;
   `;
   const ColourData=styled.div`
-    display: flex;
+   display: grid;
+   width:100% ;
+   grid-template-columns: repeat(3, minmax(0, 1fr)); 
   `;
   const Colour=styled.div`
   height: 25px;
   width: 25px;
+  border: 1px solid #E8E8E8;
   border-radius: 25px;
   `;
   const Title=styled.div`
-  
+  font-size: 14px;
   `;
 
 
@@ -80,7 +83,7 @@ function Dropdown(props) {
         ))}
 <ColourData>
 {props?.colour.map((f)=>(
-       <div>
+       <div style={{ padding:"10px" ,alignContent:"center"}}>
           <Colour style={{backgroundColor:`${f.color}`}}></Colour> <Title>{f.color}</Title>  
         </div>
         

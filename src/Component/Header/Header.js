@@ -88,7 +88,7 @@ function Header() {
         <Field>Find a Store</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
         <Field>Help</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
         <Field>Join Us</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
-        <Field>Sign In</Field>
+        <Field onClick={()=>{navigate("/signin")}}>Sign In</Field>
        </Options1> 
       </Wrapper>
 
