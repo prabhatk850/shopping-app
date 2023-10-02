@@ -7,6 +7,7 @@ import Footer from './Component/Footer/Footer';
 import Product from './Component/Products';
 import Signin from './Component/Signin/Signin';
 import Signup from './Component/Signin/Signup';
+import Password from './Component/Signin/Password';
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/Product" element={<Product/>}/> 
       <Route path="/signin" element={<Signin/>}/> 
       <Route path="/signup" element={<Signup/>}/> 
+      <Route path="/password" element={<Password/>}/> 
     </Routes>
     
   </BrowserRouter>

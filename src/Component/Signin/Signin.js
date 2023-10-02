@@ -74,7 +74,7 @@ function Signin() {
            <input type='email' placeholder='Email'  style={{marginTop:"5px",border:"1px solid black",borderRadius:"10px",height:"55px",fontSize:"18px",width:"90%",padding:"5px 20px"}}/>
             <P><Privacy>By continuing, I agree to Nike's <Link style={{fontWeight:"500",color:"gray"}} >Privacy Policy</Link> and</Privacy></P>
             <Link style={{fontWeight:"500",color:"gray"}}>Terms of Use.</Link>
-            <div style={{justifyContent:"end", display: "flex", margin:"30px 0"}}><Button onClick={()=>{navigate("/signup")}}>Continue</Button></div>
+            <div style={{justifyContent:"end", display: "flex", margin:"30px 0"}}><Button onClick={()=>{navigate("/Password")}}>Continue</Button></div>
 
         </div>
         <div></div>
