@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { SiJordan,SiNike} from 'react-icons/si'
 import { Link, useNavigate } from 'react-router-dom';
@@ -58,6 +58,8 @@ const Button= styled.button`
 
 function Signin() {
     let navigate = useNavigate();
+
+    const [email,SetEmail]=useState("")
   return (
     <Wrapper>
         <div></div>
@@ -71,10 +73,11 @@ function Signin() {
             <Contry> India </Contry> 
             <Change>Change</Change> 
            </C> 
-           <input type='email' placeholder='Email'  style={{marginTop:"5px",border:"1px solid black",borderRadius:"10px",height:"55px",fontSize:"18px",width:"90%",padding:"5px 20px"}}/>
+           <input type='email' value={email} onChange={(e)=>{SetEmail(e.target.value)}} placeholder='Email'  style={{marginTop:"5px",border:"1px solid black",borderRadius:"10px",height:"55px",fontSize:"18px",width:"90%",padding:"5px 20px"}}/>
             <P><Privacy>By continuing, I agree to Nike's <Link style={{fontWeight:"500",color:"gray"}} >Privacy Policy</Link> and</Privacy></P>
             <Link style={{fontWeight:"500",color:"gray"}}>Terms of Use.</Link>
-            <div style={{justifyContent:"end", display: "flex", margin:"30px 0"}}><Button onClick={()=>{navigate("/Password")}}>Continue</Button></div>
+            <div style={{justifyContent:"end", display: "flex", margin:"30px 0"}}><Button onClick={()=>{navigate("/signup",{ state: {email:email}
+            })}}>Continue</Button></div>
 
         </div>
         <div></div>

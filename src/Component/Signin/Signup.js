@@ -7,7 +7,8 @@ import { IoIosArrowDown} from 'react-icons/io'
 import { FiCalendar} from 'react-icons/fi'
 import { BsCheck2} from 'react-icons/bs'
 import { RxCross2} from 'react-icons/rx'
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate ,useLocation } from 'react-router-dom';
+import { signUp } from '../Service/Auth'
 
 
 const Wrapper=styled.div`
@@ -109,12 +110,30 @@ const Button= styled.button`
 
 function Signup() {
     let navigate = useNavigate();
+    const {state} = useLocation();
     
-    const [password,setPassword]=useState(true)
     const [error,setError]=useState(false)
+    const [fname,setFname]=useState("")
+    const [password,setPassword]=useState("")
+    const [lname,setLname]=useState("")
+    const [dob,setDob]=useState("")
+    const [preference,setPrefrence]=useState("Men's")
+    const {email}= state
+  
+    
      
     const handlePassword=()=>{
-        setPassword(!password)
+        const data={
+            "firstname":fname,
+            "lastname":lname,
+            "password":password,
+            "email":email,
+            "preference":preference,
+            "dob":dob
+        }
+        signUp(data)
+        navigate("/")
+        
      }
 
      
@@ -142,13 +161,13 @@ function Signup() {
         <LuRefreshCw style={{height:"22px",width:"22px",padding:"0 0 0 20px",marginTop:"20px"}}/>
         </Div>
         <div style={{display:"flex", marginBottom:"15px"}}>
-           <input type='text' placeholder='First Name'  style={{marginTop:"5px",border:"1px solid black",outline:"none",borderRadius:"10px",height:"54px",fontSize:"18px",width:"37%",padding:"5px 20px",marginRight:"12px"}}/>
-           <input type='text' placeholder='Surname'  style={{marginTop:"5px",border:"1px solid black",borderRadius:"10px",height:"54px",fontSize:"18px",width:"37%",padding:"5px 20px"}}/>
+           <input type='text' value={fname} onChange={(e)=>{setFname(e.target.value)}} placeholder='First Name'  style={{marginTop:"5px",border:"1px solid black",outline:"none",borderRadius:"10px",height:"54px",fontSize:"18px",width:"37%",padding:"5px 20px",marginRight:"12px"}}/>
+           <input type='text' value={lname} onChange={(e)=>{setLname(e.target.value)}} placeholder='Surname'  style={{marginTop:"5px",border:"1px solid black",borderRadius:"10px",height:"54px",fontSize:"18px",width:"37%",padding:"5px 20px"}}/>
         </div>
         <Div>
-        <input type='Password' placeholder='Password'  style={{marginTop:"5px",border:"none",outline:"none",borderRadius:"10px",height:"54px",fontSize:"18px",width:"80%",padding:"5px 20px",margin:"0 0 15px 0"}}/>
-        <div style={{marginTop:"20px"}}  onClick= {handlePassword}>
-            {password ?<FiEye style={{height:"22px",width:"22px",padding:"0 0 0 20px"}} />: <FiEyeOff style={{height:"22px",width:"22px",padding:"0 0 0 20px"}} />}
+        <input type='Password' value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder='Password'  style={{marginTop:"5px",border:"none",outline:"none",borderRadius:"10px",height:"54px",fontSize:"18px",width:"80%",padding:"5px 20px",margin:"0 0 15px 0"}}/>
+        <div style={{marginTop:"20px"}} >
+            <FiEye style={{height:"22px",width:"22px",padding:"0 0 0 20px"}} />
         </div>
         </Div>
         <div style={{marginBottom:"20px"}} >
@@ -156,7 +175,7 @@ function Signup() {
         <div style={{color:"gray",fontSize:"12px",marginLeft:"25px"}}> {error?<Error><RxCross2 style={{height:"17px",width:"17px",marginRight:"5px"}}/> <div>Uppercase, lowercase letters and one number</div></Error>:<Success><BsCheck2 style={{height:"17px",width:"17px",marginRight:"5px"}} /> <div>Uppercase, lowercase letters and one number"</div></Success>} </div>   
         </div> 
         <Div>
-        <Select >
+        <Select value={preference} onChange={(e)=>{setPrefrence(e.target.value)}} >
             <Choice disabled selected hidden>Shopping Prefrence</Choice>
             <Choice>Men's</Choice>
             <Choice>Women's</Choice>
@@ -164,8 +183,8 @@ function Signup() {
         <IoIosArrowDown style={{height:"22px",width:"22px",marginTop:"20px"}}/>
         </Div>
         <Div>
-        <input type='' placeholder='Date of Birth'  style={{marginTop:"5px",border:"none",outline:"none",borderRadius:"10px",height:"54px",fontSize:"18px",width:"80%",padding:"5px 20px",margin:"0 0 15px 0"}}/>
-        <FiCalendar style={{height:"22px",width:"22px",padding:"0 0 0 20px",marginTop:"20px"}}/>
+        <input type='date' value={dob} onChange={(e)=>{setDob(e.target.value)}} placeholder='Date of Birth'  style={{marginTop:"5px",border:"none",outline:"none",borderRadius:"10px",height:"54px",fontSize:"18px",width:"100%",padding:"5px 15px",margin:"0 0 15px 0"}}/>
+        {/* <FiCalendar style={{height:"22px",width:"22px",padding:"0 0 0 20px",marginTop:"20px"}}/> */}
         </Div>
         <div style={{color:"gray",fontSize:"12px",margin:"15px 25px"}}>Get a Nike Member Reward on your birthday.</div>
         <Terms>
@@ -177,7 +196,7 @@ function Signup() {
         <P><div style={{width:"400px"}}>I agree to Nike's <Link style={{fontWeight:"500",color:"gray"}} >Privacy Policy</Link> and <Link style={{fontWeight:"500",color:"gray"}}>Terms of Use.</Link></div> </P>
         </Terms>
         <div style={{width:"460px",justifyContent:"right", display: "flex", margin:"30px 0"}}>
-            <Button onClick={()=>{navigate("/")}}>Create Account</Button>
+            <Button  onClick= {handlePassword}>Create Account</Button>
         </div>
 
         </div>
