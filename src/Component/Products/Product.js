@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from "./Sidebar"
 import styled from 'styled-components'
+import { FetchProducts } from '../Service/Product';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -129,61 +131,21 @@ margin: 100px 45px 45px;
 `;
 
 function Product(props) {
+  const navigate=useNavigate()
   const[filter,SetFilter]=useState(true)
+  const[productdata,SetProductdata]=useState([])
   
   const handleFilter=()=>{
     SetFilter(!filter)
   }
-  
 
-  const dummyData = [
-    {
-      name:"Nike Tech Hera",
-      type:"Men's Shoes",
-      heading:"",
-      colourways:"1",
-      price:"9 695",
-      pic:"./Product1.jpeg",
-      logo:"./Aor1.jpeg"
-    },
-    {
-      name:"Nike Sportswear Essential",
-      type:"Women's Slim-Fit Crop T-Shirt",
-      heading:"Bestseller",
-      colourways:"2",
-      price:"1 995",
-      pic:"./Product1.jpeg",
-      logo:"./Aor1.jpeg"
-    },
-    {
-      name:"Nike Sportswear",
-      type:"Women's High-Rise Woven Shorts",
-      heading:"",
-      colourways:"1",
-      price:"2 795",
-      pic:"./Product1.jpeg",
-      logo:"./Aor1.jpeg"
-    },
-    {
-      name:"Nike Sportswear",
-      type:"Women's High-Rise Woven Shorts",
-      heading:"",
-      colourways:"1",
-      price:"2 795",
-      pic:"./Product1.jpeg",
-      logo:"./Aor1.jpeg"
-    },
-    {
-      name:"Nike Sportswear",
-      type:"Women's High-Rise Woven Shorts",
-      heading:"",
-      colourways:"1",
-      price:"2 795",
-      pic:"./Product1.jpeg",
-      logo:"./Aor1.jpeg"
-    }
-    
-  ]
+  useEffect(()=>{
+    FetchProducts().then((result)=>{
+        SetProductdata(result.data)
+        console.log("product",productdata)
+    })
+  },[])
+  
   return (
     
   <Baap>
@@ -207,12 +169,12 @@ function Product(props) {
      </Filters>
     </Header>
    <Wrapper>
-      {filter? <Sidebar/>:<div style={{width:"45px"}} />} 
+      {filter? <Sidebar catagory={"Shoes"}/>:<div style={{width:"45px"}} />} 
           <div style={{  display: "grid",width:"100%" ,gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap:"1px", height:"100vh",overflowY:"scroll" }}>
-          {dummyData.map((e)=>(
+          {productdata.map((e)=>(
         
          
-        <Div >
+        <Div onClick={(e)=>{navigate("/productdescription")}} >
             
           
           <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover"}}></Image>

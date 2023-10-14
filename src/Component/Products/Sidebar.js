@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Dropdown from './Dropdown';
-
+import { Sidebardata } from '../Service/Product';
 
 const Wrapper=styled.div`
 height: 100vh ;
@@ -24,33 +24,44 @@ padding-left: 2px;
 font-size: 18px;
 `;
 
-function Sidebar(props) {
+function Sidebar({catagory}) {
 
-  const dummyData=[
-    {
-      content:"Training & Gym"
-    },
-    {
-      content:"Baseball"
-    },
-    {
-      content:"Nike By you"
-    },
-  ]
+  const [dummyData,SetDummydata]= useState([])
+
+
+  useEffect(()=>{
+    Sidebardata().then((result)=>{
+      SetDummydata(result.data)
+    })
+  },[])
+
+  // const dummyData=[
+  //   {
+  //     content:"Training & Gym"
+  //   },
+  //   {
+  //     content:"Baseball"
+  //   },
+  //   {
+  //     content:"Nike By you"
+  //   },
+  // ]
+
 
   return (
     <Wrapper>
       {dummyData.map((e)=>(
+        e.catagory==="Shoes"?
         <Div>
           <Content>
             {e.content}
           </Content> 
-        </Div>
+        </Div> : ""
       
       ))}
-       
-    <Dropdown Title={"Gender"} dummyData={[{data:"Mens"},{data:"Women"},{data:"Kids"}]} colour={[]} />
-    <Dropdown Title={"Shop By Price"} dummyData={[{data:"₹ 7 501.00 - ₹ 12 999.00 "},{data:"Over ₹ 13 000.00"}]} colour={[]}/>
+
+      <Dropdown  />
+    {/* <Dropdown Title={"Shop By Price"} dummyData={[{data:"₹ 7 501.00 - ₹ 12 999.00 "},{data:"Over ₹ 13 000.00"}]} colour={[]}/>
     <Dropdown Title={"Sale & Offers"} dummyData={[{data:"Sale"}]} colour={[]}/>
     <Dropdown Title={"Colour"} dummyData={[]} colour={[{color:"Aqua"},{color:"Red"},{color:"Yellow"},{color:"Purple"},{color:"Blue"},{color:"Black"},{color:"White"},{color:"Brown"},{color:"Green"},{color:"Pink"},{color:"Grey"}]} />
     <Dropdown Title={"Brand"} dummyData={[{data:"Nike By You"}]} colour={[]}/>
@@ -60,9 +71,8 @@ function Sidebar(props) {
     <Dropdown Title={"Shoe Height"} dummyData={[{data:"Low Top"}]} colour={[]}/>
     <Dropdown Title={"Width"} dummyData={[{data:"Regular"}]} colour={[]}/>
     <Dropdown Title={"Shoe Feel"} dummyData={[{data:"Agile & Flexible"}]} colour={[]}/>
-    <Dropdown Title={"Benefits"} dummyData={[{data:"Easy On & Off"}]} colour={[]}/>
-    
-    </Wrapper>
+    <Dropdown Title={"Benefits"} dummyData={[{data:"Easy On & Off"}]} colour={[]}/> */}
+       </Wrapper>
   )
 }
 

@@ -8,6 +8,7 @@ import Product from './Component/Products';
 import Signin from './Component/Signin/Signin';
 import Signup from './Component/Signin/Signup';
 import Password from './Component/Signin/Password';
+import ProductDes from './Component/ProductDes';
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/signin" element={<Signin/>}/> 
       <Route path="/signup" element={<Signup/>}/> 
       <Route path="/password" element={<Password/>}/> 
+      <Route path="/productdescription" element={<ProductDes/>}/> 
     </Routes>
     
   </BrowserRouter>

@@ -112,7 +112,7 @@ function Signup() {
     let navigate = useNavigate();
     const {state} = useLocation();
     
-    const [error,setError]=useState(false)
+    const [error,setError]=useState(true)
     const [fname,setFname]=useState("")
     const [password,setPassword]=useState("")
     const [lname,setLname]=useState("")
@@ -150,7 +150,7 @@ function Signup() {
         <Title>We've Sent a code to</Title>
         <Email>
             <FetchedEmail>
-                FetchedEmail@gmail.com
+                {email}
             </FetchedEmail>
             <Edit onClick={()=>{navigate("/signin")}} >
                 Edit

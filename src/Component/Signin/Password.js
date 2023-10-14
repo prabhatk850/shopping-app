@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { SiJordan,SiNike} from 'react-icons/si'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useLocation } from 'react-router-dom';
 import { FiEye,FiEyeOff} from 'react-icons/fi'
+import { MdErrorOutline} from 'react-icons/md'
+import { Login, doLoggedIn } from '../Service/Auth';
 
 
 const Wrapper=styled.div`
@@ -26,6 +28,16 @@ margin-bottom: 25px;
 const FetchedEmail=styled.div`
 padding-right: 10px;
 `;
+
+const Invalid=styled.div`
+display: flex;
+background-color: #F5F5F5;
+padding: 15px 10px;
+height: 20px;
+margin-bottom: 20px;
+border-radius: 10px;
+`;
+
 const Edit=styled.div`
 color: gray;
 text-decoration-line: underline;
@@ -66,11 +78,30 @@ const Button= styled.button`
 
 function Password() {
     let navigate = useNavigate();
+    const {state} = useLocation();
 
-    const [password,setPassword]=useState(true)
-     
-    const handlePassword=()=>{
-        setPassword(!password)
+
+    const [password,setPassword]=useState("")
+    const [error,setError]=useState(false)
+    
+    const {email}= state
+
+    const clearState=()=>{
+        setPassword("")
+            navigate("/")
+      }
+
+    
+    const handleLogin=()=>{
+        const data={"email":email,"password":password}
+        Login(data).then((result)=>{
+            console.log("login",result)
+            if(result.data==="Invalid password"){
+                setError(true)
+            }else{
+                doLoggedIn(result.data,clearState)
+            }
+        })
      }
 
 
@@ -85,20 +116,25 @@ function Password() {
             <Heading>What's Your Password </Heading>
             <Email>
             <FetchedEmail>
-                FetchedEmail@gmail.com
+                {email}
             </FetchedEmail>
             <Edit onClick={()=>{navigate("/signin")}} >
                 Edit
             </Edit>
         </Email>
+        {error? <Invalid>
+            <MdErrorOutline style={{height:"20px",width:"20px",marginRight:"10px",color:"red"}} />
+            <div>Your credentials are invalid</div>
+        </Invalid>:""}
+        
         <Div>
-        <input type='Password' placeholder='Password'  style={{marginTop:"5px",border:"none",outline:"none",borderRadius:"10px",height:"45px",fontSize:"18px",width:"100%",padding:"5px 20px",margin:"0 0 15px 0"}}/>
-        <div style={{marginTop:"20px"}}  onClick= {handlePassword}>
-            {password ?<FiEye style={{height:"22px",width:"22px",padding:"0 10px 0 0px"}} />: <FiEyeOff style={{height:"22px",width:"22px",padding:"0 10px 0 20px"}} />}
+        <input type='Password' placeholder='Password' onChange={(e)=>{setPassword(e.target.value)}}  style={{marginTop:"5px",border:"none",outline:"none",borderRadius:"10px",height:"45px",fontSize:"18px",width:"100%",padding:"5px 20px",margin:"0 0 15px 0"}}/>
+        <div style={{marginTop:"20px"}}>
+            <FiEye style={{height:"22px",width:"22px",padding:"0 10px 0 0px"}} />
         </div>
         </Div>
             <Link style={{fontWeight:"500",color:"gray"}}>Forgot your Password?</Link>
-            <div style={{justifyContent:"end", display: "flex", margin:"20px 0"}}><Button onClick={()=>{navigate("/")}}>Sign In</Button></div>
+            <div style={{justifyContent:"end", display: "flex", margin:"20px 0"}}><Button onClick={handleLogin}>Sign In</Button></div>
 
         </div>
         <div></div>
