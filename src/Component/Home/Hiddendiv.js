@@ -4,16 +4,27 @@ import styled from 'styled-components'
 const Content1=styled.div`
 margin-right: 150px;
 padding-bottom: 15px;
+color: gray;
+&:hover{
+     color: black;
+    cursor: pointer;
+}
 
+`;
+const Wrapper1=styled.div`
+display: none;
+width: 100%;
 `;
 
 const Baap=styled.div`
+width: 100%;
+padding-bottom: 50px;
 &:hover{
     height: 350px;
     
 }
-&:hover ${Content1}{
-    color: gray;
+&:hover ${Wrapper1}{
+   display: block;
 }
 `;
 const Content=styled.div`
@@ -21,36 +32,30 @@ margin-right: 150px;
 padding-bottom: 15px;
 color: gray;
 &:hover{
-    
+    color: black;
     cursor: pointer;
 }
 
 `;
 
+
 const Wrapper=styled.div`
 display: flex;
 justify-content: center;
-
-position: relative; 
-overflow: hidden; 
-
+/* position: relative; 
+overflow: hidden;  */
 
 `;
 
-const Wrapper1=styled.div`
-display: flex;
-justify-content: center;
-position: absolute;
-width: 100%;
-`;
+
 
 const Main=styled.div`
-
+width: 25%;
 `;
 
 const Heading=styled.div`
 padding-bottom: 20px;
-margin-right: 150px;
+/* margin-right: 150px; */
 `;
 
 
@@ -59,6 +64,7 @@ function Hiddendiv() {
   return (
     <Baap>
     <Wrapper>
+        <div style={{minWidth:"10%"}} ></div>
         <Main>
             <Heading>
                 Icons
@@ -130,67 +136,75 @@ function Hiddendiv() {
 
     </Wrapper>
 
+
+
 <Wrapper1>
+<div style={{display:"flex",justifyContent:"center"}}>
+<div style={{minWidth:"10%"}}></div>
 <Main >
     
     <Content1>
-        Air Force 2
+        Air Max 97
     </Content1>
     <Content1>
-        Air Force 1
+        Air Max 270
     </Content1>
     <Content1>
-        Air Force 1
+        Air Max 720
     </Content1>
     <Content1>
-        Air Force 1
+        All Air Max
+    </Content1>
+    <Content1>
+        Vapormax
     </Content1>
 </Main>
 <Main>
     
     <Content1>
-        Air Force 2
+       Basketball Shoes
     </Content1>
     <Content1>
-        Air Force 1
+        Football Shoes
     </Content1>
     <Content1>
-        Air Force 1
+        Gym & Trainging Shoes
     </Content1>
     <Content1>
-        Air Force 1
+        Lifestyle Shoes
     </Content1>
 </Main>
 <Main>
     
     <Content1>
-        Air Force 2
+        Jackets
     </Content1>
     <Content1>
-        Air Force 1
+    Compression & Nike Pro
     </Content1>
     <Content1>
-        Air Force 1
+    Trousers & Leggings
     </Content1>
     <Content1>
-        Air Force 1
+       Shorts
     </Content1>
 </Main>
 <Main>
-   
     <Content1>
-        Air Force 2
+       Kid's Running Shoes
     </Content1>
     <Content1>
-        Air Force 1
+       Kids' Clothing
     </Content1>
     <Content1>
-        Air Force 1
+    Kids' Backpacks
     </Content1>
     <Content1>
-        Air Force 1
-    </Content1>
+    Kids' Socks
+    </Content1>    
 </Main>
+
+</div>
 
 </Wrapper1>
 </Baap>
