@@ -171,7 +171,7 @@ function Header() {
         <Help style={{right:"0"}}>
           <Liv>
           <Heading>Account</Heading>
-          <Subtitle>Profile</Subtitle>
+          <Subtitle onClick={()=>{navigate("/profile")}}>Profile</Subtitle>
           <Subtitle>Olders</Subtitle>
           <Subtitle>Favorites</Subtitle>
           <Subtitle>Inbox</Subtitle>
