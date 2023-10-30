@@ -63,12 +63,15 @@ function Dropdown(props) {
   const handleAccordian =()=>{
     setAccordian(!accordian)
   }
+  
 
   useEffect(()=>{
    DropdownData().then((result)=>{
     setDummyData(result.data)
     console.log("dummydata",result)
    })
+  // setDummyData(props.data)
+    
   },[])
 
 
@@ -77,34 +80,33 @@ function Dropdown(props) {
     <Wrapper>
       {dummydata?.map((e)=>(
         <div>
-
-        
-      <div style={{height:"1px",width:"90%",marginTop:"10px",paddingRight:"10px", backgroundColor:"gray"}} ></div>
+        <div style={{height:"1px",width:"90%",marginTop:"10px",paddingRight:"10px", backgroundColor:"gray"}} ></div>
         <Heading onClick={handleAccordian}>
-            <div>{e.catagory}</div>
+            <div>{e.category}</div>
            {accordian?<RiArrowUpSLine style={{paddingRight:"5px",height:"25px",width:"25px"}}/>:<RiArrowDownSLine style={{paddingRight:"5px",height:"25px",width:"25px"}} /> } 
         </Heading>
+        <ColourData> 
+        {e.colour?.map((f)=>(
+       <div style={{ padding:"10px" ,alignContent:"center"}}>
+          <Colour style={{backgroundColor:`${f.type}`}}></Colour> <Title>{f.type}</Title>  
+        </div>
         
-        {accordian?<Ddown>
-
-        {dummydata.map((e)=>(
+        ))}
+        </ColourData>
+        
+   {accordian?
+          <Ddown>
+            {e.type.map((e)=>(
             <BData>
             <Button  type='checkbox' ></Button>
-            {e.data}
+            {e}
+            
             </BData>   
-        ))}
-{/* <ColourData>
-{props?.colour.map((f)=>(
-       <div style={{ padding:"10px" ,alignContent:"center"}}>
-          <Colour style={{backgroundColor:`${f.color}`}}></Colour> <Title>{f.color}</Title>  
-        </div>
-        
-        ))}
-        </ColourData> */}
-
-        </Ddown>:""}
+            ))}        
+          </Ddown>:""}
         </div>
       ))}
+      
         
     </Wrapper>
   )

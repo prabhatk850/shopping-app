@@ -169,7 +169,7 @@ function Product(props) {
      </Filters>
     </Header>
    <Wrapper>
-      {filter? <Sidebar catagory={"Shoes"}/>:<div style={{width:"45px"}} />} 
+      {filter? <Sidebar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]}]}/>:<div style={{width:"45px"}} />} 
           <div style={{  display: "grid",width:"100%" ,gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap:"1px", height:"100vh",overflowY:"scroll" }}>
           {productdata.map((e)=>(
         

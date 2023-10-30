@@ -3,6 +3,7 @@ import { SiJordan,SiNike, } from 'react-icons/si'
 import { LiaHeart } from 'react-icons/lia'
 import { IoBagOutline} from 'react-icons/io5'
 import { RiSearchLine} from 'react-icons/ri'
+import { FiUser} from 'react-icons/fi'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
@@ -57,6 +58,7 @@ margin-top: 5px;
 
 const Field =styled.div`
 padding: 2px 12px;
+align-items: center;
 font-size: 12px;
 font-weight: 500;
 &:hover{
@@ -178,7 +180,7 @@ function Header() {
           <Subtitle>Logout</Subtitle>
           </Liv>
         </Help> 
-        </Field>
+        </Field> <FiUser style={{height:"20px",width:"20px"}} />
         {/* <Field>Join Us</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
         <Field onClick={()=>{navigate("/signin")}}>Sign In</Field> */}
        </Options1> 
@@ -245,7 +247,7 @@ function Header() {
         <Udl></Udl>
         </div>
 
-        <Title>Men
+        <Title onClick={()=>{navigate("/Sections")}} >Men 
         <Udl></Udl>
         <Div>  
         <div style={{display:"flex",flexWrap:"wrap"}}>

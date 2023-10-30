@@ -32,8 +32,8 @@ function Home() {
         <Headings>
           Trending
         </Headings>
-        <DoubleImg2 img={"./Trending1.jpeg"} Title={""} SubTitle={"Shop the Retro Edit"} button={"Shop the Look"}
-                   img2={"./Trending2.jpeg"} Title2={""} SubTitle2={"On-Trend Retro Sneakers"} button2={"Shop Sneakers"}  />
+        <DoubleImg2 img={"./first.jpeg"} Title={""} SubTitle={"Shop the Retro Edit"} button={"Shop the Look"}
+                   img2={"./first.jpeg"} Title2={""} SubTitle2={"On-Trend Retro Sneakers"} button2={"Shop Sneakers"}  />
         <Headings>
           Trending
         </Headings>
@@ -41,8 +41,8 @@ function Home() {
         <Headings>
           Featured
         </Headings>
-        <DoubleImg3 img={"./Featured1.jpeg"} Title={""} SubTitle={""} button={"Shop"}
-                   img2={"./Featured2.jpeg"} Title2={""} SubTitle2={""} button2={"Shop"}  />
+        <DoubleImg3 img={"./second.jpeg"} Title={"Make Your Move"} SubTitle={"Say Hello To Brand New Dunk Low"} button={"Shop"}
+                   img2={"./second.jpeg"} Title2={"Own The Floor"} SubTitle2={"Sneaker That Shine Beyond Repair"} button2={"Shop"}  />
         <Headings>
           Always On Repeat
         </Headings>

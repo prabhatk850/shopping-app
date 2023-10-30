@@ -18,7 +18,7 @@ width: 100%;
 
 const Baap=styled.div`
 width: 100%;
-padding-bottom: 50px;
+margin-bottom: 50px;
 &:hover{
     height: 350px;
     

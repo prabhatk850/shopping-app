@@ -24,7 +24,7 @@ padding-left: 2px;
 font-size: 18px;
 `;
 
-function Sidebar({catagory}) {
+function Sidebar({data}) {
 
   const [dummyData,SetDummydata]= useState([])
 
@@ -60,7 +60,7 @@ function Sidebar({catagory}) {
       
       ))}
 
-      <Dropdown  />
+      <Dropdown />
     {/* <Dropdown Title={"Shop By Price"} dummyData={[{data:"₹ 7 501.00 - ₹ 12 999.00 "},{data:"Over ₹ 13 000.00"}]} colour={[]}/>
     <Dropdown Title={"Sale & Offers"} dummyData={[{data:"Sale"}]} colour={[]}/>
     <Dropdown Title={"Colour"} dummyData={[]} colour={[{color:"Aqua"},{color:"Red"},{color:"Yellow"},{color:"Purple"},{color:"Blue"},{color:"Black"},{color:"White"},{color:"Brown"},{color:"Green"},{color:"Pink"},{color:"Grey"}]} />

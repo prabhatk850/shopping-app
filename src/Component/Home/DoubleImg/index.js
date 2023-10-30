@@ -64,7 +64,7 @@ function index(props) {
     <div style={{width:"90px"}}></div>
     <Wrapper>
     <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"515px"}}>
+       <div style={{paddingTop:"500px"}}>
          <Title>
         {props.Title}
         </Title>
@@ -78,7 +78,8 @@ function index(props) {
     <div style={{width:"30px"}}></div>
     <Wrapper>
     <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"515px"}}> <Title>
+       <div style={{paddingTop:"500px"}}> 
+       <Title style={{color:"black"}}>
         {props.Title2}
         </Title>
         <SubTitle style={{color:"black"}}>
