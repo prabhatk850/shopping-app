@@ -85,25 +85,34 @@ function Dropdown(props) {
             <div>{e.category}</div>
            {accordian?<RiArrowUpSLine style={{paddingRight:"5px",height:"25px",width:"25px"}}/>:<RiArrowDownSLine style={{paddingRight:"5px",height:"25px",width:"25px"}} /> } 
         </Heading>
-        <ColourData> 
-        {e.colour?.map((f)=>(
+        {accordian?
+        <div>
+        {e.category==="Colour"? 
+        <ColourData>
+        {e.type?.map((e)=>(
        <div style={{ padding:"10px" ,alignContent:"center"}}>
-          <Colour style={{backgroundColor:`${f.type}`}}></Colour> <Title>{f.type}</Title>  
+          <Colour style={{backgroundColor:`${e}`}}></Colour> <Title>{e}</Title>  
         </div>
         
         ))}
-        </ColourData>
-        
+        </ColourData>:""}
+        </div>:""}
    {accordian?
+   
+   <div>
+    {e.category==="Colour"?"":
           <Ddown>
             {e.type.map((e)=>(
-            <BData>
+              <BData>
             <Button  type='checkbox' ></Button>
-            {e}
             
-            </BData>   
+            {e}
+            </BData>
             ))}        
-          </Ddown>:""}
+          </Ddown>}
+          </div>
+          :""}
+
         </div>
       ))}
       

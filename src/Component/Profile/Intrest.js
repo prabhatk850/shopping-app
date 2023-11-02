@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import {AiOutlineClose} from 'react-icons/ai'
 
 const W =styled.div`
 border-radius: 15px;
 width:30%;
+height: 550px;
 background-color: white;
-border: solid 1px black ;
-top: 0;
+top: auto;
 bottom: 0;
 left: 0;
 right: 0;
+z-index: 20;
+border :solid .5px #f5f6f7; 
 margin:7% auto;
 position: absolute;
 ::-webkit-scrollbar{
@@ -39,10 +41,14 @@ width: 50px;
 `;
 const Button =styled.div`
 padding: 10px 15px;
-border: solid 1px black;
+border: solid 1px #F5F6F7;
 border-radius:25px;
 margin: 10px;
 font-size: 18px;
+&:hover{
+    border: solid 1px black;
+    background-color: #F5F6F7;
+}
 `;
 
 
@@ -61,12 +67,44 @@ height: 30px;
 }
 `;
 
-function Intrest() {
+function Intrest({SetToggle,toggle,setClasss}) {
+    // const [dummyData,setDummyData]=useState([])
+    const dummyData=[
+    {
+        pic:"./AF1.jpeg",
+        tittle:"Basketball"
+    },
+    {
+        pic:"./AF1.jpeg",
+        tittle:"Basketball"
+    },
+    {
+        pic:"./AF1.jpeg",
+        tittle:"Basketball"
+    },
+    {
+        pic:"./AF1.jpeg",
+        tittle:"Basketball"
+    },
+    {
+        pic:"./AF1.jpeg",
+        tittle:"Basketball"
+    },
+    {
+        pic:"./AF1.jpeg",
+        tittle:"Basketball"
+    }
+]
+
+    const handleClose =()=>{
+        SetToggle(!toggle)
+        {toggle?setClasss("unblur"):setClasss("blur")}
+    }
   return (
     <W>
         <div style={{margin:"30px 50px",display:"flex",justifyContent:"space-between"}}>
         <Headding>Select Your Interests</Headding>
-        <Close><AiOutlineClose style={{width:"20px",height:"20px",padding:"5px 5px"}} /></Close>
+        <Close><AiOutlineClose  onClick={handleClose} style={{width:"20px",height:"20px",padding:"5px 5px"}} /></Close>
         </div>
         <div style={{display:"flex",overflowX:"auto"}}>
             <Div>All</Div>
@@ -77,45 +115,24 @@ function Intrest() {
             <Div>Cities</Div>
         </div>
 
-        <div style={{height:"1px",backgroundColor:"gray"}}></div>
-        
-        <div style={{margin:"0px 50px",overflowY:"scroll",height:"310px"}}>
+        <div style={{height:"1px",backgroundColor:"#F5F5F5"}}></div>
+        <div style={{margin:"0px 50px",overflowY:"scroll", height:"300px"}}>
+        {dummyData.map((e)=>(
+            <div>
         <Flex>
             <Flex>
-            <Img src='./AF1.jpeg'></Img>
-            <Title>Basketball</Title>
+            <Img src={e.pic}></Img>
+            <Title>{e.tittle}</Title>
             </Flex>
             <input type='checkbox'/>
         </Flex>
-        <div style={{height:"1px",backgroundColor:"gray"}}></div>
-        <Flex>
-            <Flex>
-            <Img src='./AF1.jpeg'></Img>
-            <Title>Jordans</Title>
-            </Flex>
-            <input type='checkbox'/>
-        </Flex>
-        <div style={{height:"1px",backgroundColor:"gray"}}></div>
-        <Flex>
-            <Flex>
-            <Img src='./AF1.jpeg'></Img>
-            <Title>SNKRS</Title>
-            </Flex>
-            <input type='checkbox'/>
-        </Flex>
-        <div style={{height:"1px",backgroundColor:"gray"}}></div>
-        <Flex>
-            <Flex>
-            <Img src='./AF1.jpeg' ></Img>
-            <Title>Training & Gym</Title>
-            </Flex>
-            <input type='checkbox'/>
-        </Flex>
-        <div style={{height:"1px",backgroundColor:"gray"}}></div>
+        <div style={{height:"1px",backgroundColor:"#F5F6F7"}}></div>
+        </div>
+        ))}
         </div>
         <div style={{display:"flex",justifyContent:"end",margin:"20px 50px"}}>
-            <Button>Cancel</Button>
-            <Button style={{backgroundColor:"black", color:"white"}}>Save</Button>  
+            <Button onClick={handleClose} >Cancel</Button>
+            <Button onClick={handleClose}  style={{backgroundColor:"black", color:"white"}}>Save</Button>  
         </div>
     </W>
   )

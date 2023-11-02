@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 
@@ -58,25 +59,27 @@ outline: none;
 
 `;
 
-function index(props) {
+function Index(props) {
+
+    const navigate=useNavigate();
   return (
     <Main>
     <div style={{width:"90px"}}></div>
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"500px"}}>
+    <div style={{paddingTop:"500px"}}>
          <Title>
         {props.Title}
         </Title>
         <SubTitle>
         {props.SubTitle}    
         </SubTitle>
-            <div style={{ marginBottom:"30px", marginLeft:"49px"}}><Button style={{padding:"0 29px 0 29px",}} >{props.button}</Button></div>
-            </div>
+            <div style={{ marginBottom:"30px", marginLeft:"49px"}}><Button  style={{padding:"0 29px 0 29px",}} >{props.button}</Button></div>
+    </div>
     </Image>
     </Wrapper>
     <div style={{width:"30px"}}></div>
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
        <div style={{paddingTop:"500px"}}> 
        <Title style={{color:"black"}}>
@@ -94,4 +97,4 @@ function index(props) {
   )
 }
 
-export default index
+export default Index

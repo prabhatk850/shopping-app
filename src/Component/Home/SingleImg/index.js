@@ -61,7 +61,7 @@ function Index(props) {
     
   let navigate = useNavigate();
   return (
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <div style={{display:"flex"}}>
         <div style={{width:"45px"}}></div>
           <Img src={props.url} alt='' />
@@ -73,7 +73,7 @@ function Index(props) {
     <SubTitle>
         {props.Title.SubTitle}    
     </SubTitle>
-    <div style={{justifyContent:"center", display: "flex", marginBottom:"30px"}}><Button onClick={()=>{navigate("/product")}}>Shop</Button></div>
+    <div style={{justifyContent:"center", display: "flex", marginBottom:"30px"}}><Button>Shop</Button></div>
 
 
     </Wrapper>

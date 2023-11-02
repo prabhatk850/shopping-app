@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { useNavigate } from 'react-router-dom';
 
 const Image= styled.div`
 height: 540px;
@@ -60,10 +60,11 @@ outline: none;
 `;
 
 function Index(props) {
+    const navigate = useNavigate(); 
   return (
     <Main>
     <div style={{width:"90px"}}></div>
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
        <div style={{paddingTop:"380px"}}>
          <Title>
@@ -77,7 +78,7 @@ function Index(props) {
     </Image>
     </Wrapper>
     <div style={{width:"30px"}}></div>
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
        <div style={{paddingTop:"380px"}}> <Title>
         {props.Title2}
@@ -90,7 +91,7 @@ function Index(props) {
         </Image>
     </Wrapper>
     <div style={{width:"30px"}}></div>
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <Image style={{backgroundImage: `url(${props.img3})`, backgroundSize:"cover"}}>
        <div style={{paddingTop:"379px"}}>
          <Title>

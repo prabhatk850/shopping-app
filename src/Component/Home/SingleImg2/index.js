@@ -1,5 +1,5 @@
 import React from 'react'
-// import { useNavigate } from "react-rosuter-dom";
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 
  const Img =styled.img`
@@ -68,11 +68,11 @@ import styled from 'styled-components'
 }
  `;
 
-function index(props) {
+function Index(props) {
     
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
   return (
-    <Wrapper>
+    <Wrapper onClick={()=>{navigate("/product")}}>
     <div style={{display:"flex"}}>
         <div style={{width:"45px"}}></div>
           <Img src={props.url} alt='' />
@@ -94,4 +94,4 @@ function index(props) {
   )
 }
 
-export default index
+export default Index

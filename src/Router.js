@@ -11,7 +11,7 @@ import Password from './Component/Signin/Password';
 import ProductDes from './Component/ProductDes';
 import Sections from './Component/Sections'
 import Profile from './Component/Profile'
-
+import Setting from "./Component/Home/Setting"
 function Router() {
   return (
     <BrowserRouter>
@@ -24,8 +24,9 @@ function Router() {
       <Route path="/signup" element={<Signup/>}/> 
       <Route path="/password" element={<Password/>}/> 
       <Route path="/productdescription" element={<ProductDes/>}/> 
-      <Route path="/sections" element={<Sections/>}/> 
+      <Route path="/sections/*" element={<Sections/>}/> 
       <Route path="/Profile" element={<Profile/>}/> 
+      <Route path="/Setting" element={<Setting/>}/> 
     </Routes>
     
   </BrowserRouter>
