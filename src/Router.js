@@ -12,6 +12,9 @@ import ProductDes from './Component/ProductDes';
 import Sections from './Component/Sections'
 import Profile from './Component/Profile'
 import Setting from "./Component/Home/Setting"
+import Favorite from "./Component/Home/Favorite/Index"
+import Bag from "./Component/Home/Bag/index"
+import AccountDetails from './Component/Home/Setting/AccountDetails';
 function Router() {
   return (
     <BrowserRouter>
@@ -27,6 +30,9 @@ function Router() {
       <Route path="/sections/*" element={<Sections/>}/> 
       <Route path="/Profile" element={<Profile/>}/> 
       <Route path="/Setting" element={<Setting/>}/> 
+      <Route path="/Favorite" element={<Favorite/>}/> 
+      <Route path="/Bag" element={<Bag/>}/> 
+      <Route path="/AccountDetails" element={<AccountDetails/>}/> 
     </Routes>
     
   </BrowserRouter>

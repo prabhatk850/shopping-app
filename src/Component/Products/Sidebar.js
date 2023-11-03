@@ -5,10 +5,10 @@ import { Sidebardata } from '../Service/Product';
 
 const Wrapper=styled.div`
 height: 100vh ;
-padding-left:45px;
-margin-right: 45px;
+margin:0 45px 50px;
 padding-right: 10px;
 overflow-y:scroll ;
+overflow-x: hidden;
 `;
 const Div=styled.div`
 width: 225px;

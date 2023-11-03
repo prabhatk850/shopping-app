@@ -173,14 +173,14 @@ function Header() {
         <Help>
           <Piv>
           <Heading>Help</Heading>
-          <Subtitle onClick={handleHover}>Order Status</Subtitle>
-          <Subtitle onClick={handleHover}>Dispatch & Delivery</Subtitle>
-          <Subtitle onClick={handleHover}>Returns</Subtitle>
-          <Subtitle onClick={handleHover}>Contact Us</Subtitle>
-          <Subtitle onClick={handleHover}>Privacy & Policy</Subtitle>
-          <Subtitle onClick={handleHover}>Terms of Sales</Subtitle>
-          <Subtitle onClick={handleHover}>Terms of Use</Subtitle>
-          <Subtitle onClick={handleHover}>Send Us Feedback</Subtitle>
+          <Subtitle>Order Status</Subtitle>
+          <Subtitle>Dispatch & Delivery</Subtitle>
+          <Subtitle>Returns</Subtitle>
+          <Subtitle>Contact Us</Subtitle>
+          <Subtitle>Privacy & Policy</Subtitle>
+          <Subtitle>Terms of Sales</Subtitle>
+          <Subtitle>Terms of Use</Subtitle>
+          <Subtitle>Send Us Feedback</Subtitle>
           </Piv>
         </Help>  
         </Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
@@ -190,7 +190,7 @@ function Header() {
           <Heading>Account</Heading>
           <Subtitle onClick={()=>{navigate("/profile")}}>Profile</Subtitle>
           <Subtitle>Orders</Subtitle>
-          <Subtitle>Favorites</Subtitle>
+          <Subtitle onClick={()=>{navigate("/favorite")}}>Favorites</Subtitle>
           <Subtitle>Inbox</Subtitle>
           <Subtitle>Experiences</Subtitle>
           <Subtitle onClick={()=>{navigate("/setting")}}>Account Settings</Subtitle>
@@ -494,9 +494,9 @@ function Header() {
         <input type='text' placeholder='Search'  style={{backgroundColor:"#F5F5F5",marginTop:"5px",border:"none",outline:"none",height:"30px",fontSize:"18px",width:"120px"}}/>
        </Search>
 
-       <Hover><LiaHeart style={{height:'24px',marginRight:"20px",marginLeft:"20px",paddingTop:"10px", width:"24px"}}/>
+       <Hover onClick={()=>{navigate("/favorite")}}><LiaHeart style={{height:'24px',marginRight:"20px",marginLeft:"20px",paddingTop:"10px", width:"24px"}}/>
        </Hover>
-       <Hover><IoBagOutline  style={{height:'24px',marginRight:"15px",paddingTop:"10px", width:"24px"}}/>
+       <Hover onClick={()=>{navigate("/bag")}}><IoBagOutline  style={{height:'24px',marginRight:"15px",paddingTop:"10px", width:"24px"}}/>
        </Hover>
     </Options>
   

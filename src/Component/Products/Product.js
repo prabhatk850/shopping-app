@@ -8,11 +8,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Baap = styled.div`
-
 `;
 const Wrapper = styled.div`
 display: flex;
-overflow: hidden;
+overflow-y: scroll;
 `;
 
 const Subimage = styled.div`
