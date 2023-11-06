@@ -11,6 +11,11 @@ import {FiLink} from 'react-icons/fi';
 import {BsShare} from 'react-icons/bs';
 import AccountDetails from './AccountDetails';
 import Address from './Address';
+import ShoppingPref from './ShoppingPref';
+import Communicationpref from './Communicationpref';
+import Privacy from './Privacy';  
+import Profile from './Profile';
+import Linked from './Linked';
 // import { useNavigate } from 'react-router-dom';
 
 const Wrapper =styled.div`
@@ -82,12 +87,13 @@ function Index() {
             <div style={{display:"flex",justifyContent:"",alignItems:"center",width:"70%"}}>
               {(toggle==="account-Detail")?<AccountDetails/>:""}
               {(toggle==="Delivery-Address")?<Address/>:""}
-              {/* {(toggle==="Delivery-Address")?<Address/>:""}
-              {(toggle==="Delivery-Address")?<Address/>:""}
-              {(toggle==="Delivery-Address")?<Address/>:""}
-              {(toggle==="Delivery-Address")?<Address/>:""}
-              {(toggle==="Delivery-Address")?<Address/>:""}
-              {(toggle==="Delivery-Address")?<Address/>:""} */}
+              {(toggle==="Shop-Prefrence")?<ShoppingPref/>:""}
+              {(toggle==="Communication-Prefrence")?<Communicationpref/> :""}
+              {(toggle==="Privacy")?<Privacy/>:""}
+              {(toggle==="Profile-Visibility")?<Profile/>:""}
+              {(toggle==="Linked-Accounts")?<Linked/>:""}
+              
+              
 
               
 

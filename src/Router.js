@@ -16,6 +16,9 @@ import Favorite from "./Component/Home/Favorite/Index"
 import Bag from "./Component/Home/Bag/index"
 import AccountDetails from './Component/Home/Setting/AccountDetails';
 import Address from './Component/Home/Setting/Address';
+import ShoppingPref from './Component/Home/Setting/ShoppingPref';
+import Privacy from './Component/Home/Setting/Privacy';
+import Profilepage from './Component/Home/Setting/Profile';
 function Router() {
   return (
     <BrowserRouter>
@@ -35,6 +38,9 @@ function Router() {
       <Route path="/Bag" element={<Bag/>}/> 
       <Route path="/AccountDetails" element={<AccountDetails/>}/> 
       <Route path="/Address" element={<Address/>}/> 
+      <Route path="/ShoppingPref" element={<ShoppingPref/>}/> 
+      <Route path="/Privacy" element={<Privacy/>}/> 
+      <Route path="/Profilepage" element={<Profilepage/>}/> 
     </Routes>
     
   </BrowserRouter>

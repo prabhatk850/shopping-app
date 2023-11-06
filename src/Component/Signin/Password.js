@@ -96,6 +96,12 @@ function Password() {
         const data={"email":email,"password":password}
         Login(data).then((result)=>{
             console.log("login",result)
+            if (result.data) {
+                localStorage.setItem('token', result.data);
+              } else {
+                throw new Error('Token not found');
+              }
+
             if(result.data==="Invalid password"){
                 setError(true)
             }else{

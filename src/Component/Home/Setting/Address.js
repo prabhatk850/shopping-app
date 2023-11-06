@@ -17,7 +17,7 @@ width:100%;
 justify-content: space-between;
 align-items: center;
 font-size:25px;
-margin-top: 50px;
+margin-top: 20px;
 font-weight: 400;
 `;
 
@@ -121,7 +121,8 @@ const Form=styled.div`
 /* position:absolute; */
 display: flex;
 align-items: center;
-padding: 50px 50px;
+padding: 0px 50px;
+margin-bottom: 20px;
 border-radius: 25px;
 background-color: white;
 `;

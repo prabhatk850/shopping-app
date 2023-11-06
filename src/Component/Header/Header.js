@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { SiJordan,SiNike, } from 'react-icons/si'
 import { LiaHeart } from 'react-icons/lia'
 import { IoBagOutline} from 'react-icons/io5'
@@ -6,6 +6,8 @@ import { RiSearchLine} from 'react-icons/ri'
 import { FiUser} from 'react-icons/fi'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { doLoggedOut } from '../Service/Auth'
+import { getUserDetails } from '../Service/Profile'
 
 const Container=styled.div`
 
@@ -152,6 +154,8 @@ line-height: 30px;
 // `;
 
 function Header() {
+ const [userDetail,setUserDetail]=useState({}) 
+ const [isLoggedOut,setIsLoggedOut]=useState(true)
 
   const navigate=useNavigate()
 
@@ -159,6 +163,17 @@ function Header() {
     event.stopPropagation();
     navigate("/product");
   }
+
+  useEffect(()=>{
+    const token=localStorage.getItem("token")
+    setIsLoggedOut(token?false:true)
+    getUserDetails().then((result)=>{
+      console.log("user",result.data)
+      setUserDetail(result.data)
+    }).catch((err)=>{
+      console.log("error for getuserDetails",err)
+    })
+  },[],[isLoggedOut])
   
   
   return (
@@ -184,7 +199,9 @@ function Header() {
           </Piv>
         </Help>  
         </Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
-        <Field>Hi Prabhat
+       {isLoggedOut?"":
+       <div style={{display:"flex"}} >
+        <Field>Hi {userDetail.firstname}
         <Help style={{right:"0"}}>
           <Liv>
           <Heading>Account</Heading>
@@ -194,12 +211,17 @@ function Header() {
           <Subtitle>Inbox</Subtitle>
           <Subtitle>Experiences</Subtitle>
           <Subtitle onClick={()=>{navigate("/setting")}}>Account Settings</Subtitle>
-          <Subtitle>Logout</Subtitle>
+          <Subtitle onClick={()=>{doLoggedOut()}}>Logout</Subtitle>
           </Liv>
         </Help> 
-        </Field> <FiUser style={{height:"20px",width:"20px"}} />
-        {/* <Field>Join Us</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
-        <Field onClick={()=>{navigate("/signin")}}>Sign In</Field> */}
+        </Field>
+        <FiUser style={{height:"20px",width:"20px"}} />
+        </div>}
+        {isLoggedOut?
+        <div style={{display:"flex"}}>
+        <Field>Join Us</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
+        <Field onClick={()=>{navigate("/signin")}}>Sign In</Field>
+        </div>:""}
        </Options1> 
       </Wrapper>
 
