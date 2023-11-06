@@ -19,7 +19,7 @@ import Linked from './Linked';
 // import { useNavigate } from 'react-router-dom';
 
 const Wrapper =styled.div`
-margin: 0 50px;
+margin: 0 50px 50px 50px;
 `;
 
 const Page=styled.div`
