@@ -15,6 +15,7 @@ import Setting from "./Component/Home/Setting"
 import Favorite from "./Component/Home/Favorite/Index"
 import Bag from "./Component/Home/Bag/index"
 import AccountDetails from './Component/Home/Setting/AccountDetails';
+import Address from './Component/Home/Setting/Address';
 function Router() {
   return (
     <BrowserRouter>
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/Favorite" element={<Favorite/>}/> 
       <Route path="/Bag" element={<Bag/>}/> 
       <Route path="/AccountDetails" element={<AccountDetails/>}/> 
+      <Route path="/Address" element={<Address/>}/> 
     </Routes>
     
   </BrowserRouter>

@@ -106,7 +106,6 @@ function Index() {
     const [classs,setClasss]=useState("unblur")
 
     const toggleIntrest=()=>{
-        
         SetToggle(!toggle)
         {toggle?setClasss("unblur"):setClasss("blur")}
         

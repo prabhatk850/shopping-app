@@ -82,50 +82,71 @@ const dummydata = [
         colour: "White/Black",
         size: "Size: 9",
         quantity: "Quantity: 1",
+        price: "8950"
+
+    },
+    {
+        img: './AF1.jpeg',
+        name: "Nike Full Force",
+        product: "Men's Shoes",
+        colour: "White/Black",
+        size: "Size: 9",
+        quantity: "Quantity: 1",
         price: "8950",
-        subTotal: " ₹ 8950.00",
-        extra: " ₹ 1250.00",
-        total: " ₹ 10200.00"
+        
+       
 
     }
 ]
+const Summary = [
+    {
+        subTotal: " ₹ 8950.00",
+        extra: " ₹ 1250.00",
+        total: " ₹ 10200.00"
+    }]
 
 function Index(e) {
   return (
+
     <Wrapper>
         <Header/>
-            {dummydata.map((e) => (
-        <div style={{display:"flex",justifyContent:"center"}}>
-            <div style={{width:"50%",margin:"0 30px 0 0"}}>
-                <Heading>Bag</Heading>
-                <Div>
-                    <div style={{display:"flex"}}>
-                    <Img src={e.img}></Img>
-                    <About>
-                        <InnerHeading>
-                            {e.name}
-                        </InnerHeading>
-                        <Product>
-                            {e.product}
-                        </Product>
-                        <Colour>
-                            {e.colour}
-                        </Colour>
-                        <div style={{display:"flex",marginBottom:"20px"}}>
-                            <Size>{e.size}</Size>
-                            <Quantity>{e.quantity}</Quantity>
+        <div style={{display:"flex", justifyContent:"center"}}>
+            <div style={{display:"flex", flexDirection:"column", width:"50%"}}>
+        <Heading>Bag</Heading>
+                {dummydata.map((e) => (
+                    <div style={{display:"flex", flexDirection:"column", margin:"0 30px 0 0"}}>
+                        <Div>
+                            <div style={{display:"flex"}}>
+                                <Img src={e.img}></Img>
+                                <About>
+                                    <InnerHeading>
+                                        {e.name}
+                                    </InnerHeading>
+                                    <Product>
+                                        {e.product}
+                                    </Product>
+                                    <Colour>
+                                        {e.colour}
+                                    </Colour>
+                                    <div style={{display:"flex",marginBottom:"20px"}}>
+                         <Size>{e.size}</Size>
+                         <Quantity>{e.quantity}</Quantity>
+                     </div>
+                     <div style={{display:"flex"}}>
+                         <LiaHeart style={{height:"25px",width:"25px",marginRight:"20px"}}/>
+                         <GoTrash style={{height:"25px",width:"25px"}}/>
                         </div>
-                        <div style={{display:"flex"}}>
-                            <LiaHeart style={{height:"25px",width:"25px",marginRight:"20px"}}/>
-                            <GoTrash style={{height:"25px",width:"25px"}}/>
-                        </div>
-                    </About>
+                                </About>
+                            </div>
+                            <Price>MRP: ₹ {e.price}.00 </Price>
+                        </Div>
                     </div>
-                    <Price>MRP: ₹ {e.price}.00 </Price>
-                </Div>  
+                ))}
             </div>
-            <div style={{width:"25%"}}>
-                <Heading>Summary</Heading>
+            <div style={{display:"flex", flexDirection:"column", width:"30%"}}>
+            <Heading>Summary</Heading>
+            {Summary.map((e) => (
+                <div>
                 <div style={{display:"flex",justifyContent:"space-between"}}>
                     <Text>Subtotal</Text>
                     <SubTotal>{e.subTotal}</SubTotal>
@@ -139,18 +160,19 @@ function Index(e) {
                 <Text>Total</Text>
                 <Total>{e.total}</Total>
                 </div>
+                </div>))}
             </div>
-        </div>))}
-            <Heading1>You Might Also Like </Heading1>
+        </div>
+        <Heading1>You Might Also Like </Heading1>
         
-        <Horizontalscroll img={"./Aor1.jpeg"} Text={"Nike Sportswear"} Subtext={"Men's Overized T-shirt"} Cost={"$ 3 095"}
-                          img2={"./Aor2.jpeg"} Text2={"Nike Air Force 1 '07"} Subtext2={"Men's Shoes"} Cost2={"$ 7 495"}
-                          img3={"./Aor3.jpeg"} Text3={"NikeCourt Dri-FIT Victory"} Subtext3={"Men's 9' (23cm approx.) Tennis Shorts"} Cost3={"$ 2 395"}
-                          img4={"./Aor4.jpeg"} Text4={"Nike Air Force 1 '07"} Subtext4={"Women's Shoes"} Cost4={"$ 9 695"}
-                          img5={"./Aor5.jpeg"} Text5={"Nike Sportswear"} Subtext5={"Women's T-shirt"} Cost5={"$ 2 595"}
-                          img6={"./Aor6.jpeg"} Text6={"Nike Sportswear Club Fleece"} Subtext6={"Women's Mid-Rise Shorts"} Cost6={"$ 2 595"}/>
-     
-        <Footer/>
+             <Horizontalscroll img={"./Aor1.jpeg"} Text={"Nike Sportswear"} Subtext={"Men's Overized T-shirt"} Cost={"$ 3 095"}
+                               img2={"./Aor2.jpeg"} Text2={"Nike Air Force 1 '07"} Subtext2={"Men's Shoes"} Cost2={"$ 7 495"}
+                               img3={"./Aor3.jpeg"} Text3={"NikeCourt Dri-FIT Victory"} Subtext3={"Men's 9' (23cm approx.) Tennis Shorts"} Cost3={"$ 2 395"}
+                               img4={"./Aor4.jpeg"} Text4={"Nike Air Force 1 '07"} Subtext4={"Women's Shoes"} Cost4={"$ 9 695"}
+                               img5={"./Aor5.jpeg"} Text5={"Nike Sportswear"} Subtext5={"Women's T-shirt"} Cost5={"$ 2 595"}
+                               img6={"./Aor6.jpeg"} Text6={"Nike Sportswear Club Fleece"} Subtext6={"Women's Mid-Rise Shorts"} Cost6={"$ 2 595"}/>
+         
+             <Footer/>
     </Wrapper>
   )
 }
