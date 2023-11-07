@@ -63,12 +63,7 @@ padding: 6px 15px 0;
 function Index() {
 
   const [toggle,SetToggle]=useState(true)
-
-  // const [img,setImage]=useState(null);
-  // const handleImageSelect=(selectedImage)=>{
-  //   console.log("first",selectedImage)
-  //   setImage(selectedImage);
-  // }
+  const [uploadImg , setUploadImg] = useState(new Blob)
 
   return (
     <Wrapper>
@@ -77,7 +72,7 @@ function Index() {
       <Dob>Your Nike profile represents you on product reviews and across the Nike family of apps.</Dob>
       <div style={{display:"flex",justifyContent:"space-between"}}>
         <div onClick={()=>{SetToggle(!toggle)}} style={{display:"flex"}}>
-            <Div src='./Avatar.jpeg'></Div>
+            <Div src={URL.createObjectURL(uploadImg)}></Div>
             <LiaEditSolid style={{height:"25px",width:"25px",marginTop:"10px",cursor:"pointer"}}/>
         </div>
         <div style={{marginRight:"50px"}}>
@@ -88,19 +83,19 @@ function Index() {
         </Delete1>
         </div>
       </div>
-      {!toggle && <Img/>}
+      {!toggle && <Img setUploadImg={setUploadImg}/>}
       <div style={{borderBottom:"1px solid lightgray",margin:"30px 0"}}></div>
       <Subheaing>Product Review Visibility</Subheaing>
       <Dob>Choose how you will appear on any Nike product reviews you complete. Changing these settings will also affect your visibility for connecting with friends on the Nike Training Club and Nike Run Club apps.<div style={{textDecoration:"underline",fontWeight:'500',fontSize:'18px'}}>Learn More</div></Dob>
        <div style={{margin:'50px 0'}}>
-        <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Private: Profile visible to only you</div></div>
+        <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio' defaultChecked></input><div style={{marginLeft:"15px"}}>Private: Profile visible to only you</div></div>
         <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Social: Profile visible to friends</div></div>
         <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Public: Everyone can view profile</div></div>
        </div>
        <Subheaing>Location Sharing</Subheaing>
        <div style={{margin:'50px 0'}}>
-        <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Share my location with friends only</div></div>
-        <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Don't share my location</div></div>
+        <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Location' type='radio' defaultChecked></input><div style={{marginLeft:"15px"}}>Share my location with friends only</div></div>
+        <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Location' type='radio'></input><div style={{marginLeft:"15px"}}>Don't share my location</div></div>
        </div>
        <div style={{display:"flex",justifyContent:"end"}}>
        <Delete1>

@@ -64,10 +64,10 @@ function ShoppingPref() {
         <IoIosArrowDown style={{height:"22px",width:"22px",marginTop:"20px"}}/>
         </Div>
         <Ttile>Shopping Preference</Ttile>
-        <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Men's</div></div>
+        <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio' defaultChecked></input><div style={{marginLeft:"15px"}}>Men's</div></div>
         <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} name='Preference' type='radio'></input><div style={{marginLeft:"15px"}}>Women's</div></div>
         <Ttile>Additional Preferences</Ttile>
-        <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} type='checkbox'></input><div style={{marginLeft:"15px"}}>Men's</div></div>
+        <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} type='checkbox' defaultChecked></input><div style={{marginLeft:"15px"}}>Men's</div></div>
         <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} type='checkbox'></input><div style={{marginLeft:"15px"}}>Women's</div></div>
         <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} type='checkbox'></input><div style={{marginLeft:"15px"}}>Men's</div></div>
         <div style={{display:"flex",margin:"10px"}}> <input style={{height:"20px",width:"20px"}} type='checkbox'></input><div style={{marginLeft:"15px"}}>Women's</div></div>

@@ -21,3 +21,21 @@ export const getUserDetails = ()=>{
     })
 
 } 
+export const updateProfile = ()=>{
+    const {firstname,lastname,password,preference,dob,email,phoneNumber}=this.state;
+    const response =  axios.put(`${process.env.REACT_APP_BASE_URL}/api/updateProfile`, {
+        firstname: {firstname},
+        lastname: {lastname},
+        password: {password},
+        preference: {preference},
+        dob: {dob},
+        email: {email},
+        phoneNumber: {phoneNumber}   
+    }).then(response => {
+        this.setState({ status: response.status })
+    })
+    .catch(error => {
+        this.setState({ errorMessage: error.message });
+    });
+    return response
+}
