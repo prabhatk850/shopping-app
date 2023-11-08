@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components';
 import { useState } from 'react';
 import {AiOutlineClose} from 'react-icons/ai'
+import { updateProfile } from '../../Service/Profile';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Bap=styled.div`
 `;
@@ -128,9 +131,49 @@ background-color: white;
 `;
 
 function Address() {
+    const updateaddress=()=>{
+        const data={
+        
+            addressline1:street,
+            addressline2:apt,
+            town:town,
+            city:city,
+            state:state,
+            country:country,
+            postalcode:postal,
+            phoneNumber:phone,
+        }
+        updateProfile(data).then((result)=>{
+            if(result.status===200){
+                toast.success("Address Updated Successfully")
+            }else{
+                toast.error("Error in updating Address")
+            }
+        })
+
+        setStreet("")
+        setApt("")
+        setTown("")
+        setCity("")
+        setState("")
+        setCountry("")
+        setPostal("")
+        setPhone("")
+        setAddress(!address)
+    }
     const [address,setAddress]=useState(false)
+    const [street,setStreet]=useState("")
+    const [apt,setApt]=useState("")
+    const [town,setTown]=useState("")
+    const [city,setCity]=useState("")
+    const [postal,setPostal]=useState("")
+    const [state,setState]=useState("")
+    const [country,setCountry]=useState("")
+    const [phone,setPhone]=useState("")
+
   return (
   <Bap>
+    <ToastContainer />
     {address?"":
     <Wrappers>
        
@@ -150,43 +193,34 @@ function Address() {
             <div style={{display:"flex",justifyContent:"space-between",padding:"4% 4%"}}>
             <Heading>Add Address <Cross onClick={()=>{setAddress(!address)}} style={{width:"20px",height:"20px",padding:"5px 5px"}} /></Heading>
             </div>
-       
-            <div style={{width:"100%",display:"flex"}}>
-            <Div1 >
-            <Input1  placeholder="First Name"/>
-            </Div1>
-            <Div1>
-            <Input1 placeholder="Last Name"/>
-            </Div1>
-            </div>
             <Div >
-            <Input placeholder="Street Address"/>
-            </Div>
+            <Input value={street} placeholder="Street Address" onChange={(e)=>{setStreet(e.target.value)}}/>
+            </Div> 
             <Div style={{margin: "20px 30px 10px 20px"}}>
-            <Input placeholder="Apt, Suits, Building"/>
+            <Input value={apt} placeholder="Apt, Suits, Building" onChange={(e)=>{setApt(e.target.value)}}/>
             </Div>
             <div style={{width:"100%",display:"flex"}}>
             <Div1>
-            <Input1 placeholder="Town/Village"/>
+            <Input1 value={town} placeholder="Town/Village" onChange={(e)=>{setTown(e.target.value)}}/>
             </Div1>
             <Div1>
-            <Input1 placeholder="Town/City"/>
-            </Div1>
-            </div>
-            <div style={{width:"100%",display:"flex"}}>
-            <Div1>
-            <Input1 type='number' placeholder="Postal Code"/>
-            </Div1>
-            <Div1>
-            <Input1 placeholder="State"/>
+            <Input1 value={city} placeholder="Town/City" onChange={(e)=>{setCity(e.target.value)}}/>
             </Div1>
             </div>
             <div style={{width:"100%",display:"flex"}}>
             <Div1>
-            <Input1 placeholder="Country"/>
+            <Input1 value={postal} type='number' placeholder="Postal Code" onChange={(e)=>{setPostal(e.target.value)}}/>
             </Div1>
             <Div1>
-            <Input1 type='number' placeholder="Phone Number"/>
+            <Input1 value={state} placeholder="State" onChange={(e)=>{setState(e.target.value)}}/>
+            </Div1>
+            </div>
+            <div style={{width:"100%",display:"flex"}}>
+            <Div1>
+            <Input1 value={country} placeholder="Country" onChange={(e)=>{setCountry(e.target.value)}}/>
+            </Div1>
+            <Div1>
+            <Input1 value={phone} type='number' placeholder="Phone Number" onChange={(e)=>{setPhone(e.target.value)}}/>
             </Div1>
             </div>
             <Div style={{display:"flex"}}>
@@ -194,7 +228,7 @@ function Address() {
                 <div style={{fontSize:"20px"}}>Set as default delivery address</div>
             </Div>
             <div style={{width:"95%",display:"flex",justifyContent:"end"}}>
-        <Button1>
+        <Button1 onClick={updateaddress}>
                 Save Address
         </Button1>
         </div>

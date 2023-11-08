@@ -71,6 +71,7 @@ font-weight: 500;
     }
 }
 `;
+
 const Div =styled.div`
   display: none;
   width: 60%;
@@ -86,6 +87,16 @@ padding: 30px 40px 20px;
 `;
 const Liv =styled.div`
 padding: 30px 100px 20px 40px;
+`;
+const Tiv =styled.div`
+display: flex;
+&:hover{
+    color: #6C6C6C;
+    cursor: pointer;
+    ${Help}{
+    display: block;
+    }
+}
 `;
 
 
@@ -200,7 +211,7 @@ function Header() {
         </Help>  
         </Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>
        {isLoggedOut?"":
-       <div style={{display:"flex"}} >
+       <Tiv style={{display:"flex"}} >
         <Field>Hi {userDetail.firstname}
         <Help style={{right:"0"}}>
           <Liv>
@@ -216,7 +227,7 @@ function Header() {
         </Help> 
         </Field>
         <FiUser style={{height:"20px",width:"20px"}} />
-        </div>}
+        </Tiv>}
         {isLoggedOut?
         <div style={{display:"flex"}}>
         <Field>Join Us</Field><div style={{fontSize:"10px",marginTop:"3px"}}>|</div>

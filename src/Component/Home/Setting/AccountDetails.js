@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect , useState } from 'react'
 import styled from 'styled-components';
+import { getUserDetails } from '../../Service/Profile';
 
 const Wrappers=styled.div`
 width: 100%;
@@ -87,21 +88,31 @@ padding: 5px 15px;
 
 
 function AccountDetails() {
+    const [userDetails, setUserDetails] = useState({
+        email: "",
+        phoneNumber: "",
+        dob: "",
+    });
+    useEffect(() => {
+        getUserDetails().then((result)=>{
+            setUserDetails(result.data)
+
+    })}, [])
   return (
     <Wrappers>
         <Heading>Account Details</Heading>
-        <Email>Prabhatk850@gmail.com</Email>
+        <Email>{userDetails?.email}</Email>
         <Head>Password</Head>
         <Password> <input type='password' placeholder='...............' disabled style={{border:"none",outline:"none",backgroundColor:"white",fontSize:"20px"}} ></input> <Edit>Edit</Edit> </Password>
         <Head>Phone no.</Head>
-        <Phone> <input type='text' disabled placeholder='7982223246' style={{border:"none",outline:"none",backgroundColor:"white"}} ></input> <Edit>Edit</Edit> </Phone>
+        <Phone> <input type='text' disabled placeholder='Phone Number' value={userDetails?.phoneNumber} style={{border:"none",outline:"none",backgroundColor:"white"}} ></input> <Edit>Edit</Edit> </Phone>
         <Head>Date of Birth</Head>
-        <Dob>22/06/2000</Dob>
+        <Dob>{userDetails?.dob}</Dob>
         <Head>Location</Head>
-        <Email> <input type='text' placeholder='Country' style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
-        <Email> <input type='text' placeholder='State' style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
-        <Email> <input type='text' placeholder='District' style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
-        <Email> <input type='number' placeholder='Postle Code' style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input type='text' placeholder='Country' value={userDetails?.country} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input type='text' placeholder='State' value={userDetails?.state} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input type='text' placeholder='District' value={userDetails?.city} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input type='number' placeholder='Postle Code' value={userDetails?.postalcode} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
         <div style={{borderBottom:"1px solid lightgray",marginBottom:"20px",width:"41%"}}></div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"20px",width:"40%" }}>
             <div>

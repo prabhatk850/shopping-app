@@ -64,7 +64,6 @@ function Signin() {
 
     const handleCheckUser =()=>{
       Checkuser({"email":email}).then((result)=>{
-        console.log("first",result.data)
         if(result.data===true){
           navigate("/password",{state:{"email":email}})
         }else{
@@ -74,7 +73,7 @@ function Signin() {
       })
     
     }
-
+  
   return (
     <Wrapper>
         <div></div>

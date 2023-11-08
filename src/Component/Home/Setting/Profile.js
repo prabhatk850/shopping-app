@@ -63,7 +63,7 @@ padding: 6px 15px 0;
 function Index() {
 
   const [toggle,SetToggle]=useState(true)
-  const [uploadImg , setUploadImg] = useState(new Blob)
+  const [uploadImg , setUploadImg] = useState(new Blob())
 
   return (
     <Wrapper>

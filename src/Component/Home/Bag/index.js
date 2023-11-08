@@ -110,11 +110,11 @@ function Index(e) {
 
     <Wrapper>
         <Header/>
-        <div style={{display:"flex", justifyContent:"center"}}>
+        <div style={{display:"flex", justifyContent:"center",margin:"50px 0"}}>
             <div style={{display:"flex", flexDirection:"column", width:"50%"}}>
         <Heading>Bag</Heading>
                 {dummydata.map((e) => (
-                    <div style={{display:"flex", flexDirection:"column", margin:"0 30px 0 0"}}>
+                    <div style={{display:"flex", flexDirection:"column", margin:"0 50px 0 0"}}>
                         <Div>
                             <div style={{display:"flex"}}>
                                 <Img src={e.img}></Img>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react';
-import Favorite from '../Home/Favorite/Index';
+import { useNavigate } from "react-router-dom";
 
 
 const Wrapper=styled.div`
@@ -21,7 +21,7 @@ font-weight: 400;
 `;
 
 function Head() {
-  const [toggle,SetToggle]=useState(false)
+let navigate = useNavigate();
   
   return (
     <div>
@@ -29,10 +29,9 @@ function Head() {
             <Div>Profile</Div>
             <Div>Inbox</Div>
             <Div>Orders</Div>
-            <Div onClick={()=>{SetToggle(!toggle)}}>Favorites</Div>
-            <Div>Settings</Div>
+            <Div onClick={()=>{navigate('/Favorite')}}>Favorites</Div>
+            <Div onClick={()=>{navigate("/Setting")}}>Settings</Div>
         </Wrapper>
-        {toggle?"":<Favorite/>}
     </div>
   )
 }
