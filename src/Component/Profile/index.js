@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -6,6 +6,7 @@ import Head from './Head';
 import Intrest from './Intrest';
 import Horizontalscroll from '../Home/Horizontalscroll/Index2';
 import {BsPlusCircle} from 'react-icons/bs'
+import { getUserDetails } from '../Service/Profile';
 
 const Bap=styled.div`
 `;
@@ -104,12 +105,30 @@ const Image=styled.div``;
 function Index() {
     const [toggle,SetToggle]=useState(false)
     const [classs,setClasss]=useState("unblur")
+    const [name,setName]=useState("Member")
+    const [userSince,setUserSince]=useState("")
 
     const toggleIntrest=()=>{
         SetToggle(!toggle)
         {toggle?setClasss("unblur"):setClasss("blur")}
         
     }
+    useEffect(()=>{
+        getUserDetails().then((res)=>{
+            console.log("mem",res)
+            let name = res.data?.firstname + " " + res.data?.lastname
+            setName(name)
+            setUserSince(res.data?.createdAt)
+        }).catch((err)=>console.log(err))
+    },[])
+    const isoDate = userSince; // Replace with your ISO date
+    const date = new Date(isoDate);
+    const month = date.getMonth() + 1; // getMonth() returns a zero-based month
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthName = monthNames[month - 1];
+    const year = date.getFullYear();
+
+    
   return (<Bap>
 <div>{toggle?<Intrest SetToggle={SetToggle} toggle={toggle} setClasss={setClasss} classs={classs}/>:""}</div>
     <Wrapper className={classs} >
@@ -120,13 +139,13 @@ function Index() {
             <div style={{display:"flex",alignItems:"center"}}>
                 <Img></Img>
                 <div>
-                    <Name>Prabhat Kumar verma</Name>
-                    <Member>Nike Member Since July 2022</Member>
+                    <Name>{name}</Name>
+                    <Member>Nike Member Since {monthName} {year}</Member>
                 </div>
             </div>
             <Intrests style={{display:"flex",justifyContent:"space-between"}}>
                 <Headings>
-                    Intrests
+                    Interests
                 </Headings>
                 <Edit style={{cursor:"pointer"}} onClick={toggleIntrest}>
                     Edit

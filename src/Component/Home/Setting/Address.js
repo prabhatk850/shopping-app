@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { useState } from 'react';
 import {AiOutlineClose} from 'react-icons/ai'
-import { updateProfile } from '../../Service/Profile';
+import { updateAdd } from '../../Service/Profile';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -133,7 +133,8 @@ background-color: white;
 function Address() {
     const updateaddress=()=>{
         const data={
-        
+            firstName:fname,
+            lastName:lname,
             addressline1:street,
             addressline2:apt,
             town:town,
@@ -143,14 +144,15 @@ function Address() {
             postalcode:postal,
             phoneNumber:phone,
         }
-        updateProfile(data).then((result)=>{
+        updateAdd(data).then((result)=>{
             if(result.status===200){
                 toast.success("Address Updated Successfully")
             }else{
                 toast.error("Error in updating Address")
             }
         })
-
+        setFname("")
+        setLname("")
         setStreet("")
         setApt("")
         setTown("")
@@ -162,6 +164,8 @@ function Address() {
         setAddress(!address)
     }
     const [address,setAddress]=useState(false)
+    const [fname,setFname]=useState("")
+    const [lname,setLname]=useState("")
     const [street,setStreet]=useState("")
     const [apt,setApt]=useState("")
     const [town,setTown]=useState("")
@@ -192,6 +196,14 @@ function Address() {
     <Form><div>
             <div style={{display:"flex",justifyContent:"space-between",padding:"4% 4%"}}>
             <Heading>Add Address <Cross onClick={()=>{setAddress(!address)}} style={{width:"20px",height:"20px",padding:"5px 5px"}} /></Heading>
+            </div>
+            <div style={{width:"100%",display:"flex"}}>
+            <Div1>
+            <Input1 value={fname} placeholder="First Name" onChange={(e)=>{setFname(e.target.value)}}/>
+            </Div1>
+            <Div1>
+            <Input1 value={lname} placeholder="Last Name" onChange={(e)=>{setLname(e.target.value)}}/>
+            </Div1>
             </div>
             <Div >
             <Input value={street} placeholder="Street Address" onChange={(e)=>{setStreet(e.target.value)}}/>

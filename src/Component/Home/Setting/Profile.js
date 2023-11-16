@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {LiaEditSolid} from 'react-icons/lia'
 import { useState } from 'react'
 import Img from './Img'
+import { updateProfile } from '../../Service/Profile'
 
 const Wrapper =styled.div`
 width: 50%;
@@ -64,6 +65,7 @@ function Index() {
 
   const [toggle,SetToggle]=useState(true)
   const [uploadImg , setUploadImg] = useState(new Blob())
+  
 
   return (
     <Wrapper>
@@ -98,7 +100,7 @@ function Index() {
         <div style={{display:"flex",margin:"15px"}}> <input style={{height:"20px",width:"20px"}} name='Location' type='radio'></input><div style={{marginLeft:"15px"}}>Don't share my location</div></div>
        </div>
        <div style={{display:"flex",justifyContent:"end"}}>
-       <Delete1>
+       <Delete1 >
                 Save
         </Delete1>
        </div>

@@ -1,6 +1,7 @@
 import React, { useEffect , useState } from 'react'
 import styled from 'styled-components';
 import { getUserDetails } from '../../Service/Profile';
+import { updateProfile } from '../../Service/Profile';
 
 const Wrappers=styled.div`
 width: 100%;
@@ -88,14 +89,49 @@ padding: 5px 15px;
 
 
 function AccountDetails() {
+    const [isPassDisabled, setIsPassDisabled] = useState(true);
+    const [isMobDisabled, setMobIsDisabled] = useState(true);
     const [userDetails, setUserDetails] = useState({
         email: "",
-        phoneNumber: "",
         dob: "",
     });
+
+    const [country, setCountry] = useState('')
+    const [password, setPassword] = useState('.........')
+    const [phone, setPhone] = useState('')
+    const [state, setState] = useState('')
+    const [city, setCity] = useState('')
+    const [zip, setZip] = useState('')
+  
+
+  const update = () => {
+    const data = {
+      country: country,
+      state: state,
+      city: city,
+      postalcode: zip,
+        phoneNumber: phone,
+        password: password
+    }
+    updateProfile(data).then((result)=>{
+      if(result.status === 200){
+        alert('Profile Updated')
+      }
+    }).catch((err)=>{
+        alert(err)
+      }
+  )}
+
     useEffect(() => {
         getUserDetails().then((result)=>{
+            console.log("result",result)
             setUserDetails(result.data)
+            setPhone(result.data.phoneNumber)
+            setState(result.data.state)
+            setCountry(result.data.country)
+            setCity(result.data.city)
+            setZip(result.data.postalcode)
+
 
     })}, [])
   return (
@@ -103,16 +139,16 @@ function AccountDetails() {
         <Heading>Account Details</Heading>
         <Email>{userDetails?.email}</Email>
         <Head>Password</Head>
-        <Password> <input type='password' placeholder='...............' disabled style={{border:"none",outline:"none",backgroundColor:"white",fontSize:"20px"}} ></input> <Edit>Edit</Edit> </Password>
+        <Password> <input onChange={(e)=>{setPassword(e.target.value)}} type={isPassDisabled?"password":"text"} placeholder='.........' disabled={isPassDisabled}  style={{border:"none",outline:"none",backgroundColor:"white",fontSize:"20px"}} ></input> <Edit onClick={()=>{setIsPassDisabled(!isPassDisabled)}}>Edit</Edit> </Password>
         <Head>Phone no.</Head>
-        <Phone> <input type='text' disabled placeholder='Phone Number' value={userDetails?.phoneNumber} style={{border:"none",outline:"none",backgroundColor:"white"}} ></input> <Edit>Edit</Edit> </Phone>
+        <Phone> <input onChange={(e)=>{setPhone(e.target.value)}} type='text' disabled={isMobDisabled} placeholder='Phone Number' value={phone} style={{border:"none",outline:"none",backgroundColor:"white"}} ></input> <Edit onClick={()=>{setMobIsDisabled(!isMobDisabled)}}>Edit</Edit> </Phone>
         <Head>Date of Birth</Head>
         <Dob>{userDetails?.dob}</Dob>
         <Head>Location</Head>
-        <Email> <input type='text' placeholder='Country' value={userDetails?.country} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
-        <Email> <input type='text' placeholder='State' value={userDetails?.state} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
-        <Email> <input type='text' placeholder='District' value={userDetails?.city} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
-        <Email> <input type='number' placeholder='Postle Code' value={userDetails?.postalcode} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input onChange={(e)=>{setCountry(e.target.value)}} type='text' placeholder='Country' value={country} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input onChange={(e)=>{setState(e.target.value)}} type='text' placeholder='State' value={state} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input onChange={(e)=>{setCity(e.target.value)}} type='text' placeholder='District' value={city} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
+        <Email> <input onChange={(e)=>{setZip(e.target.value)}} type='number' placeholder='Postle Code' value={zip} style={{width:"90%",padding:"0 0 0 10px",height:"50px",border:"none",outline:"none"}}></input></Email>
         <div style={{borderBottom:"1px solid lightgray",marginBottom:"20px",width:"41%"}}></div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"20px",width:"40%" }}>
             <div>
@@ -124,7 +160,7 @@ function AccountDetails() {
         </div>
         <div style={{borderBottom:"1px solid lightgray",marginBottom:"20px",width:"41%"}}></div>
         <div style={{width:"40%",display:"flex",justifyContent:"end"}}>
-        <Delete1 >
+        <Delete1 onClick={update}>
                 Save
         </Delete1>
         </div>
