@@ -187,7 +187,7 @@ function Product(props) {
           <Name>{e.name}</Name>
           <Type>{e.type}</Type>
           <Colourways>{e.colourways} Colours</Colourways>
-          <Price>MRP: ₹ {e.price}.00</Price>
+          <Price>MRP: ₹ {e.price}</Price>
        
 
         </Div>

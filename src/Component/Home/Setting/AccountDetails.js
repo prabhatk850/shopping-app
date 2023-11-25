@@ -28,12 +28,18 @@ margin-top: 20px;
 `;
 const Password=styled.div`
 width: 40%;
-height: 50px;
+padding-left: 10px;
+align-items: center;
 display: flex;
 justify-content: space-between;
+height: 50px;
+border: 1px solid gray;
+border-radius: 5px;
+margin: 20px 0;
 
 `;
 const Phone=styled.div`
+padding-left: 10px;
 width: 40%;
 height: 50px;
 display: flex;
@@ -54,6 +60,7 @@ pointer-events: none;
 `;
 
 const Edit=styled.div`
+margin-right: 10px;
 display: flex;
 align-items: center;
 &:hover{
@@ -91,6 +98,7 @@ padding: 5px 15px;
 function AccountDetails() {
     const [isPassDisabled, setIsPassDisabled] = useState(true);
     const [isMobDisabled, setMobIsDisabled] = useState(true);
+    const [isDivClicked, setIsDivClicked] = useState(false);
     const [userDetails, setUserDetails] = useState({
         email: "",
         dob: "",
@@ -102,6 +110,10 @@ function AccountDetails() {
     const [state, setState] = useState('')
     const [city, setCity] = useState('')
     const [zip, setZip] = useState('')
+
+    const handleClick = () => {
+        setIsDivClicked(true)
+    }   
   
 
   const update = () => {
@@ -139,7 +151,7 @@ function AccountDetails() {
         <Heading>Account Details</Heading>
         <Email>{userDetails?.email}</Email>
         <Head>Password</Head>
-        <Password> <input onChange={(e)=>{setPassword(e.target.value)}} type={isPassDisabled?"password":"text"} placeholder='.........' disabled={isPassDisabled}  style={{border:"none",outline:"none",backgroundColor:"white",fontSize:"20px"}} ></input> <Edit onClick={()=>{setIsPassDisabled(!isPassDisabled)}}>Edit</Edit> </Password>
+        <Password onClick={handleClick} style={{border: isDivClicked ? '1px solid gray' : 'none' }}> <input onChange={(e)=>{setPassword(e.target.value)}} type={isPassDisabled?"password":"text"} placeholder='••••••' disabled={isPassDisabled}  style={{border:'none' ,outline:"none",backgroundColor:"white",fontSize:"20px"}} ></input> <Edit onClick={()=>{setIsPassDisabled(!isPassDisabled)}}>Edit</Edit> </Password>
         <Head>Phone no.</Head>
         <Phone> <input onChange={(e)=>{setPhone(e.target.value)}} type='text' disabled={isMobDisabled} placeholder='Phone Number' value={phone} style={{border:"none",outline:"none",backgroundColor:"white"}} ></input> <Edit onClick={()=>{setMobIsDisabled(!isMobDisabled)}}>Edit</Edit> </Phone>
         <Head>Date of Birth</Head>

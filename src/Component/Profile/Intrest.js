@@ -89,11 +89,7 @@ function Intrest({SetToggle,toggle,setClasss}) {
     {
         pic:"./AF1.jpeg",
         tittle:"Basketball"
-    },
-    {
-        pic:"./AF1.jpeg",
-        tittle:"Basketball"
-    }
+    } 
 ]
 
     const handleClose =()=>{

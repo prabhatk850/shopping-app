@@ -4,12 +4,14 @@ import styled from 'styled-components'
 import { LiaHeart } from 'react-icons/lia'
 import { GoDotFill } from 'react-icons/go'
 import { useState } from 'react';
+import ReactImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 
 const Wrapper=styled.div`
 display:flex;
 justify-content: space-between;
-margin: 100px  170px;
+margin: 100px  100px;
 height: 720px;
 
 `;
@@ -114,6 +116,16 @@ padding-bottom: 15px;
 
 function ProductDes() {
 
+    const images = [    
+        {
+            original: './AF1.jpeg',
+            thumbnail: './AF1.jpeg',
+            },
+            {
+            original: './AF1.jpeg',
+            thumbnail: './AF1.jpeg',
+            }
+    ]
     // const[dummydata,SetDummyData]=useState([])
     const [accordian,SetAccordian]=useState(false)
 
@@ -138,19 +150,10 @@ function ProductDes() {
 
   return (
     <Wrapper>
-        <div className='dflex'   >
-        <Photos className='dblock'>
-            <Img style={{margin:"0 10px 10px"}} src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-        </Photos>
-        <MainPic src='./AF1.jpeg' alt=''></MainPic>
+        <div className='dflex'>
+            <ReactImageGallery className='product' showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} thumbnailPosition='left'></ReactImageGallery>
         </div>
-        <div style={{width:"390px",overflowY:"auto",}} >
+        <div style={{width:"400px",overflowY:"auto",}} >
         {dummydata.map((e)=>(
         <div>
             <Headding>{e.headding}</Headding>
@@ -165,10 +168,7 @@ function ProductDes() {
             <Img src='./AF1.jpeg' alt='' ></Img>
             <Img src='./AF1.jpeg' alt='' ></Img>
             <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-        </Photos>
+       </Photos>
         
         <div className='dflex' style={{justifyContent:"space-between",margin:"30px 0 10px 0"}} >
             <SelectSize>Select Size</SelectSize>

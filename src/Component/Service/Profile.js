@@ -1,20 +1,20 @@
 import axios from "axios";
 import { currentUser } from "./Auth";
 
+const token = currentUser()
+const UserInstance = axios.create({
+    baseURL:process.env.REACT_APP_BASE_URL,
+    timeout:1000000000,
+    headers:{"token":`b ${token}`},
+    validateStatus:function(status){
+        return status <600;
+    }
+})
+
 
 export const getUserDetails = ()=>{
-    const token = currentUser()
-    console.log("token",token)
-    const getUserInstance = axios.create({
-        baseURL:process.env.REACT_APP_BASE_URL,
-        timeout:10000,
-        headers:{"token":`b ${token}`},
-        validateStatus:function(status){
-            return status <600;
-        }
-    })
-
-    return getUserInstance.get("/api/getUserData").then((result)=>{
+   
+    return UserInstance.get("/api/getUserData").then((result)=>{
         return result
     }).catch((err)=>{
         console.log("error for getuserDetails",err)
@@ -24,39 +24,28 @@ export const getUserDetails = ()=>{
 
 export const updateProfile = (data)=>{
 
-  const token = currentUser()
-    console.log("token",token)
-    const updateUserInstance = axios.create({
-        baseURL:process.env.REACT_APP_BASE_URL,
-        timeout:10000,
-        headers:{"token":`b ${token}`},
-        validateStatus:function(status){
-            return status <600;
-        }
-    })
-    console.log("update",data)
-
-    return updateUserInstance.put("/api/updateProfile",data).then((result)=>{
+    return UserInstance.put("/api/updateProfile",data).then((result)=>{
         return result
     }).catch((err)=>{
         console.log("error for Update Profile",err)
     })
 }
 export const updateAdd = (data)=>{
-    const token = currentUser()
-    const updateUserInstance = axios.create({
-        baseURL:process.env.REACT_APP_BASE_URL,
-        timeout:10000,
-        headers:{"token":`b ${token}`},
-        validateStatus:function(status){
-            return status <600;
-        }
-    })
-
-    return updateUserInstance.post("/api/updateAddress",data).then((result)=>{
+    
+    return UserInstance.post("/api/updateAddress",data).then((result)=>{
         console.log("add",result)
         return result
     }).catch((err)=>{
         console.log("error for Update Address",err)
     })
 }
+export const getUserAddress = ()=>{
+
+    return UserInstance.get("/api/getUserAddress").then((result)=>{
+        return result
+    }).catch((err)=>{
+        console.log("error for getuserAddress",err)
+    })
+
+}
+

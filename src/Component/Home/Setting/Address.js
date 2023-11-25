@@ -1,15 +1,18 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components';
-import { useState } from 'react';
 import {AiOutlineClose} from 'react-icons/ai'
-import { updateAdd } from '../../Service/Profile';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { updateAdd ,getUserAddress } from '../../Service/Profile';
+import { ToastContainer, toast } from 'react-toastify';import 'react-toastify/dist/ReactToastify.css';
+
 
 const Bap=styled.div`
 `;
 
 const Wrappers=styled.div`
+width: 100%;
+margin: 50px 0;
+`;
+const Wrapper=styled.div`
 width: 100%;
 margin: 50px 0;
 `;
@@ -24,8 +27,6 @@ margin-top: 20px;
 font-weight: 400;
 `;
 
-
-
 const Dob=styled.div`
 margin-top: 10px;
 width: 60%;
@@ -38,8 +39,6 @@ margin: 20px 0;
 opacity: 0.4;
 pointer-events: none;
 `;
-
-
 
 const Delete1=styled.div`
 height: 25px;
@@ -57,8 +56,7 @@ padding: 6px 15px 0;
     background-color: gray;
 }
 `;
-// page 2 
-
+// page 2
 const Div=styled.div`
 margin: 10px 30px 10px 20px;
 
@@ -129,12 +127,121 @@ margin-bottom: 20px;
 border-radius: 25px;
 background-color: white;
 `;
+const AddressLine=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const Town=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const City=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const State=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const Country=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const Code=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const Mob=styled.div`
+width: 100%;
+line-height: 1.5;
+letter-spacing: 0.5px;
+align-items: center;
+font-size: 15px;
+`;
+const Name =styled.div`
+margin-top: 10px;
+opacity: 0.4;
+width: 60%;
+align-items: center;
+font-size: 15px;
+border-radius: 5px;
+
+opacity: 0.4;
+pointer-events: none;
+`;
+const Default =styled.div`
+margin-top: 10px;
+width: 60%;
+align-items: center;
+font-size: 15px;
+border-radius: 5px;
+margin: 20px 0;
+pointer-events: none;
+`;
+
+
+
 
 function Address() {
-    const updateaddress=()=>{
+    const [useradd, setUseradd] = useState({
+    fname:"",
+    lname:"",
+    street:"",
+    apt:"",
+    town:"",
+    city:"",
+    postal:"",
+    state:"",
+    country:"",
+    phone:"",
+    });
+    const [address,setAddress]=useState(true)
+    const [isAddress , setIsAddress] = useState(false)
+    const [savedaddress,setSavedaddress]=useState([])
+    const [fname,setFname]=useState("")
+    const [lname,setLname]=useState("")
+    const [street,setStreet]=useState("")
+    const [apt,setApt]=useState("")
+    const [town,setTown]=useState("")
+    const [city,setCity]=useState("")
+    const [postal,setPostal]=useState("")
+    const [state,setState]=useState("")
+    const [country,setCountry]=useState("")
+    const [phone,setPhone]=useState("")
+    const [defaultadd,setDefaultadd]=useState(false)
+
+    const sort = (a, b) => {
+        if (a.default > b.default) {
+            return -1;
+        }
+        if (a.default < b.default) {
+            return 1;
+        }
+        return 0;
+    };
+
+    const updateaddress =() => {
         const data={
-            firstName:fname,
-            lastName:lname,
+            firstname:fname,
+            lastname:lname,
             addressline1:street,
             addressline2:apt,
             town:town,
@@ -143,6 +250,7 @@ function Address() {
             country:country,
             postalcode:postal,
             phoneNumber:phone,
+            default:defaultadd
         }
         updateAdd(data).then((result)=>{
             if(result.status===200){
@@ -162,37 +270,68 @@ function Address() {
         setPostal("")
         setPhone("")
         setAddress(!address)
-    }
-    const [address,setAddress]=useState(false)
-    const [fname,setFname]=useState("")
-    const [lname,setLname]=useState("")
-    const [street,setStreet]=useState("")
-    const [apt,setApt]=useState("")
-    const [town,setTown]=useState("")
-    const [city,setCity]=useState("")
-    const [postal,setPostal]=useState("")
-    const [state,setState]=useState("")
-    const [country,setCountry]=useState("")
-    const [phone,setPhone]=useState("")
+    };
+
+    useEffect(() => {
+        getUserAddress().then((result)=>{
+            setSavedaddress(result.data?.sort(sort))
+            console.log("tush",savedaddress)
+            if(result.data.length>0)
+            setIsAddress(true)
+        }).catch((err)=>{
+            console.log("error",err)
+        })
+    },[])
 
   return (
+    
   <Bap>
     <ToastContainer />
-    {address?"":
-    <Wrappers>
-       
-        <div style={{width:"70%"}}>
 
+    {address?
+    <div>
+    {isAddress?
+    <Wrappers>
+        <div>
         <Heading>Saved Delivery Address</Heading>
-        <Dob>You currently don't have any saved delivery addresses.Add an address here to be pre-filled for quicker checkout.</Dob>
-        <div style={{width:"65%",display:"flex",justifyContent:"end"}}>
+        {/* // sort defualt address on top */}
+
+            {savedaddress?.map((e)=>(
+            <div>
+            <div style={{borderBottom:"1px solid lightgray",margin:"10px 0"}}></div>
+            {e.default?<Default>Default Address</Default>:""}
+            <Name>{e.firstname } {e.lastname}</Name>
+            <AddressLine>{e.addressline1}</AddressLine>
+            <AddressLine>{e.addressline2}</AddressLine>
+            <Town>{e.town}</Town>
+            <City>{e.city}</City>
+            <State>{e.state}</State>
+            <Country>{e.country}</Country>
+            <Code>{e.postalcode}</Code>
+            <Mob>{e.phoneNumber}</Mob>
+            </div>))}
+        
+            <div style={{width:"100%",display:"flex",justifyContent:"end"}}>
         <Delete1 onClick={()=>{setAddress(!address)}}>
                 Add Address
-        </Delete1>
+        </Delete1> 
         </div>
         </div>
-    </Wrappers>}
-    {address?
+    </Wrappers>:<Wrapper>
+       
+       <div style={{width:"70%"}}>
+
+       <Heading>Saved Delivery Address</Heading>
+       <Dob>You currently don't have any saved delivery addresses.Add an address here to be pre-filled for quicker checkout.</Dob>
+       <div style={{width:"65%",display:"flex",justifyContent:"end"}}>
+       <Delete1 onClick={()=>{setAddress(!address)}}>
+               Add Address
+       </Delete1> 
+       </div>
+       </div>
+   </Wrapper>}
+    </div>
+    :
     <Form><div>
             <div style={{display:"flex",justifyContent:"space-between",padding:"4% 4%"}}>
             <Heading>Add Address <Cross onClick={()=>{setAddress(!address)}} style={{width:"20px",height:"20px",padding:"5px 5px"}} /></Heading>
@@ -236,19 +375,17 @@ function Address() {
             </Div1>
             </div>
             <Div style={{display:"flex"}}>
-            <Button  type='checkbox' ></Button>
+            <Button onChange={(e)=>{setDefaultadd(!defaultadd)}} type='checkbox' ></Button>
                 <div style={{fontSize:"20px"}}>Set as default delivery address</div>
-            </Div>
-            <div style={{width:"95%",display:"flex",justifyContent:"end"}}>
-        <Button1 onClick={updateaddress}>
+        </Div>
+        <div style={{width:"95%",display:"flex",justifyContent:"end"}}>
+            <Button1 onClick={updateaddress}>
                 Save Address
-        </Button1>
+            </Button1>
         </div>
         </div>
-        </Form>:""}
-   
-  </Bap>
-  )
-}
+    </Form>}
+</Bap>
+)}
 
 export default Address

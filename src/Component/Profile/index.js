@@ -203,7 +203,7 @@ function Index() {
             </Grid>
         
         <Headings style={{margin:"70px 0 30px 0"}}>
-            Intrests
+            Interests
         </Headings>
         <Horizontalscroll img={"./Aor1.jpeg"} Text={"Nike Sportswear"} 
                           img2={"./Aor2.jpeg"} Text2={"Nike Air Force 1 '07"}
