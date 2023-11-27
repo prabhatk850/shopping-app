@@ -6,6 +6,8 @@ import { GoDotFill } from 'react-icons/go'
 import { useState } from 'react';
 import ReactImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
+import { addFavoriteProducts } from '../Service/Product';
+import { useLocation } from 'react-router-dom';
 
 
 const Wrapper=styled.div`
@@ -115,31 +117,43 @@ padding-bottom: 15px;
 
 
 function ProductDes() {
+    const location=useLocation()
+    const {_id,
+        name,
+        type,
+        colourways,
+        price,
+        offer_price,
+        off_percent,
+        pic,
+        logo,
+        heading,
+        url}=location.state
 
     const images = [    
         {
-            original: './AF1.jpeg',
-            thumbnail: './AF1.jpeg',
+            original: pic,
+            thumbnail: pic,
             },
             {
             original: './AF1.jpeg',
             thumbnail: './AF1.jpeg',
             }
     ]
-    // const[dummydata,SetDummyData]=useState([])
     const [accordian,SetAccordian]=useState(false)
 
     const handleAccordian=()=>{
         SetAccordian(!accordian)
     }
-
-    const dummydata=[
-        {
-          headding:"Nike Air Force 1",
-          subHeadding:"Older Kids' Shoes",
-          price:"5 995"
-        }
-    ]
+    const handlefav=()=>{
+        const data={name,type,colourways,price,offer_price,off_percent,pic,logo,heading,url}
+        addFavoriteProducts(data).then((result)=>{
+            console.log("result",result)
+        }).catch((error)=>{
+            console.log("error",error)
+        })
+        
+    }
 
     const accordiandata=[
         {
@@ -154,15 +168,15 @@ function ProductDes() {
             <ReactImageGallery className='product' showFullscreenButton={false} showNav={false} showPlayButton={false} items={images} thumbnailPosition='left'></ReactImageGallery>
         </div>
         <div style={{width:"400px",overflowY:"auto",}} >
-        {dummydata.map((e)=>(
+        
         <div>
-            <Headding>{e.headding}</Headding>
-            <SubHeadding>{e.subHeadding}</SubHeadding>
-            <Price>MRP : ₹{e.price}.00</Price>
+            <Headding>{name}</Headding>
+            <SubHeadding>{type}</SubHeadding>
+            <Price>MRP : ₹{price}.00</Price>
             <Include>incl. of taxes</Include>
             <Include>(Also includes all applicable duties)</Include>
         </div>
-        ))}
+       
         <Photos style={{marginTop:"40px"}}>
             <Img src='./AF1.jpeg' alt='' ></Img>
             <Img src='./AF1.jpeg' alt='' ></Img>
@@ -185,7 +199,7 @@ function ProductDes() {
             <Size>UK 6.5</Size>
         </div>
         <Add>Add to bag</Add>
-        <Add style={{backgroundColor:"white", color:"black"}}>Favorite <LiaHeart/> </Add>
+        <Add style={{backgroundColor:"white", color:"black"}} onClick={()=>{handlefav(_id,name)}}>Favorite <LiaHeart/> </Add>
         
         <Description>Kick it in comfort in the Nike Air Force 1.The feel of classic leather and details that made this shoe an icon are sure to make your sneaker style stand out on the street.</Description>
         <Productid><GoDotFill/> Colour Shown: White/Black</Productid>

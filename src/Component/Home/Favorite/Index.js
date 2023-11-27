@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect ,useState } from 'react'
 import styled from 'styled-components'
 import Header from './../../../Component/Header/Header'
 import Horizontalscroll from '../Horizontalscroll'
 import Footer from '../../Footer/Footer';
+import { getFavoriteProducts } from '../../Service/Product';
 
 const Wrapper=styled.div`
 `;
@@ -41,29 +42,39 @@ display: flex;
 justify-content: space-between;
 `;
 
- const dummyData=[
-    {
-        img:"./AF1.jpeg",
-        Text:"Nike Air Force 1 '07 EasyOn",
-        Subtext:"Shoes",
-        Cost:"$189.00"
-    },
-    {
-        img:"./AF1.jpeg",
-        Text:"Nike Air Force 1 '07 EasyOn",
-        Subtext:"Shoes",
-        Cost:"$189.00"
-    },
-    {
-        img:"./AF1.jpeg",
-        Text:"Nike Air Force 1 '07 EasyOn",
-        Subtext:"Shoes",
-        Cost:"$189.00"
-    }
-  
+//  const dummyData=[
+    // {
+    //     img:"./AF1.jpeg",
+    //     Text:"Nike Air Force 1 '07 EasyOn",
+    //     Subtext:"Shoes",
+    //     Cost:"$189.00"
+    // },
+    // {
+    //     img:"./AF1.jpeg",
+    //     Text:"Nike Air Force 1 '07 EasyOn",
+    //     Subtext:"Shoes",
+    //     Cost:"$189.00"
+    // },
+    // {
+    //     img:"./AF1.jpeg",
+    //     Text:"Nike Air Force 1 '07 EasyOn",
+    //     Subtext:"Shoes",
+    //     Cost:"$189.00"
+    // }]
 
-]
-function Index(e) {
+function Index() {
+    const [favoriteProducts,setFavoriteProducts]=useState([]);
+    useEffect(() => {
+        getFavoriteProducts().then((result) => {
+            if (Array.isArray(result.data)) {
+                setFavoriteProducts(result.data);
+            } else {
+                console.log("result.data is not an array");
+            }
+        }).catch((error) => {
+            console.log("error from fetch product", error);
+        });
+    }, []);
 
   return (
     <Wrapper>
@@ -80,14 +91,14 @@ function Index(e) {
 
         <div style={{  display: "grid",margin: "30px 0",width:"100%" ,gridTemplateColumns: "31% 31% 31%", gap:"45px",rowGap:"85px", height:"auto"}}>
          
-        {dummyData.map((e)=>(        
+        {favoriteProducts?.map((e)=>(        
         <Div>
-            <Img src={e.img} ></Img>
+            <Img src={e.pic} ></Img>
             <Container>
-            <Text>{e.Text}</Text>
-            <Text style={{fontWeight:"500"}}>{e.Cost}</Text>
+            <Text>{e.name}</Text>
+            <Text style={{fontWeight:"500"}}>MRP: ₹ {e.price}</Text>
            </Container>
-          <Text style={{color:"gray"}}>{e.Subtext}</Text>
+          <Text style={{color:"gray"}}>{e.type}</Text>
         </Div>
         ))}
         </div>

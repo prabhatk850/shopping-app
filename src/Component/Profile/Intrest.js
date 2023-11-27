@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {AiOutlineClose} from 'react-icons/ai'
 
@@ -68,34 +68,108 @@ height: 30px;
 `;
 
 function Intrest({SetToggle,toggle,setClasss}) {
-    // const [dummyData,setDummyData]=useState([])
+
     const dummyData=[
-    {
-        pic:"./AF1.jpeg",
-        tittle:"Basketball"
-    },
-    {
-        pic:"./AF1.jpeg",
-        tittle:"Basketball"
-    },
-    {
-        pic:"./AF1.jpeg",
-        tittle:"Basketball"
-    },
-    {
-        pic:"./AF1.jpeg",
-        tittle:"Basketball"
-    },
-    {
-        pic:"./AF1.jpeg",
-        tittle:"Basketball"
-    } 
-]
+        {
+            pic:"./AF1.jpeg",
+            tittle:"ACG",
+            category:"Products"
+    
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Basketball",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Air Force 1",
+            category:"Products"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Jordan",
+            category:"Products"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"SNKRS",
+            category:"Products"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Vollyball",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Football",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Soccer",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Baseball",
+            category:"Sports"
+    
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Skateboarding",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Golf",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Tennis",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Training & Gym",
+            category:"Cities"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Yoga",
+            category:"Sports"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Boxing",
+            category:"Teams"
+        },
+        {
+            pic:"./AF1.jpeg",
+            tittle:"Track & Field",
+            category:"Athletes"
+        }
+    ]
+
+    const [filteredData,setfilteredData]=useState(dummyData)
+    const [dataToFilter,setDataToFilter]=useState("All")
+    
 
     const handleClose =()=>{
         SetToggle(!toggle)
         {toggle?setClasss("unblur"):setClasss("blur")}
     }
+    const filterFunction=(data)=>{
+        console.log("first",filteredData)
+        setDataToFilter(data)
+    }
+    useEffect(()=>{
+        
+        dataToFilter==="All"?setfilteredData(dummyData):setfilteredData(dummyData.filter((e)=>e.category===dataToFilter))
+    },[filterFunction])
   return (
     <W>
         <div style={{margin:"30px 50px",display:"flex",justifyContent:"space-between"}}>
@@ -103,17 +177,17 @@ function Intrest({SetToggle,toggle,setClasss}) {
         <Close><AiOutlineClose  onClick={handleClose} style={{width:"20px",height:"20px",padding:"5px 5px"}} /></Close>
         </div>
         <div style={{display:"flex",overflowX:"auto"}}>
-            <Div>All</Div>
-            <Div>Sports</Div>
-            <Div>Products</Div>
-            <Div>Teams</Div>
-            <Div>Athletes</Div>
-            <Div>Cities</Div>
+            <Div onClick={()=>{filterFunction("All")}}>All</Div>
+            <Div onClick={()=>{filterFunction("Sports")}}>Sports</Div>
+            <Div onClick={()=>{filterFunction("Products")}}>Products</Div>
+            <Div onClick={()=>{filterFunction("Teams")}}>Teams</Div>
+            <Div onClick={()=>{filterFunction("Athletes")}}>Athletes</Div>
+            <Div onClick={()=>{filterFunction("Cities")}}>Cities</Div>
         </div>
 
         <div style={{height:"1px",backgroundColor:"#F5F5F5"}}></div>
         <div style={{margin:"0px 50px",overflowY:"scroll", height:"300px"}}>
-        {dummyData.map((e)=>(
+        {filteredData.map((e)=>(
             <div>
         <Flex>
             <Flex>

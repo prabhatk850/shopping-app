@@ -7,6 +7,7 @@ import Intrest from './Intrest';
 import Horizontalscroll from '../Home/Horizontalscroll/Index2';
 import {BsPlusCircle} from 'react-icons/bs'
 import { getUserDetails } from '../Service/Profile';
+import { useNavigate } from 'react-router-dom';
 
 const Bap=styled.div`
 `;
@@ -59,22 +60,11 @@ transition: .2s;
 
 
 const Title=styled.div`
-padding-top: 220px;
+padding-top: 180px;
 `;
-
-const Pdiv=styled.div`
-height: 258px;
-overflow: hidden;
-border: solid 1px black;
-&:hover{
-    ${Title}{
-        padding-top: 160px;
-    }
-}
-`;
-
-
 const Button= styled.button`
+display: none;
+position:relative;
 background-color: White;
 color: black;
 width: auto;
@@ -92,6 +82,22 @@ font-weight: 500;
 }
 
 `;
+
+const Pdiv=styled.div`
+height: 258px;
+overflow: hidden;
+border: solid 1px black;
+&:hover{
+    ${Button}{
+        display: block;
+    
+    }
+    
+}
+`;
+
+
+
 const Edit=styled.div`
 /* &:active{
     ${Wrapper}{
@@ -103,6 +109,18 @@ const Edit=styled.div`
 const Image=styled.div``;
 
 function Index() {
+
+    const dummyData=[
+        {
+            pic:"./AF1.jpeg",
+            title:"ACG"
+        },
+        {
+            pic:"./first.jpeg",
+            title:"Nike Air Max"
+        }
+    ]
+    const navigate=useNavigate()
     const [toggle,SetToggle]=useState(false)
     const [classs,setClasss]=useState("unblur")
     const [name,setName]=useState("Member")
@@ -153,53 +171,17 @@ function Index() {
             </Intrests>
             <Grid>
                 <Gdiv  onClick={toggleIntrest}><div style={{fontSize:"20px",paddingBottom:"10px"}}>Add an Item</div><BsPlusCircle style={{height:"20px",width:"20px"}}/></Gdiv>
-                <Pdiv>
-                <Image style={{backgroundImage: `url(${"./first.jpeg"})`, backgroundSize:"cover"}}>
+                   {dummyData.map((e)=>(
+                <Pdiv onClick={()=>{navigate("/product")}}>
+                <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover", backgroundPosition:"center" }}>
                     <Title>
-                        <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>ACG</div>
-                        <div style={{  marginLeft:"20px",paddingBottom:"25px"}}><Button>Shop</Button></div>
+                        <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>{e.title}</div>
+                        <Button>Shop</Button>
     
                     </Title>
                 </Image>
-                </Pdiv>
-                <Pdiv>
-                <Image style={{backgroundImage: `url(${"./first.jpeg"})`, backgroundSize:"cover"}}>
-                    <Title>
-                        <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>ACG</div>
-                        <div style={{  marginLeft:"20px",paddingBottom:"25px"}}><Button>Shop</Button></div>
-    
-                    </Title>
-                </Image>
-                </Pdiv>
-                <Pdiv>
-                <Image style={{backgroundImage: `url(${"./first.jpeg"})`, backgroundSize:"cover"}}>
-                    <Title>
-                        <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>ACG</div>
-                        <div style={{  marginLeft:"20px",paddingBottom:"25px"}}><Button>Shop</Button></div>
-    
-                    </Title>
-                </Image>
-                </Pdiv>
-                <Pdiv>
-                <Image style={{backgroundImage: `url(${"./first.jpeg"})`, backgroundSize:"cover"}}>
-                    <Title>
-                        <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>ACG</div>
-                        <div style={{  marginLeft:"20px",paddingBottom:"25px"}}><Button>Shop</Button></div>
-    
-                    </Title>
-                </Image>
-                </Pdiv>
-                <Pdiv>
-                <Image style={{backgroundImage: `url(${"./first.jpeg"})`, backgroundSize:"cover"}}>
-                    <Title>
-                        <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>ACG</div>
-                        <div style={{  marginLeft:"20px",paddingBottom:"25px"}}><Button>Shop</Button></div>
-    
-                    </Title>
-                </Image>
-                </Pdiv>
-                
-                
+                </Pdiv>   
+                   ))}
             </Grid>
         
         <Headings style={{margin:"70px 0 30px 0"}}>

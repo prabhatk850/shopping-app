@@ -173,9 +173,18 @@ function Product(props) {
           {productdata.map((e)=>(
         
          
-        <Div onClick={(e)=>{navigate("/productdescription")}} >
-            
-          
+        <Div key={e._id}  onClick={()=>{navigate("/productdescription",{state:{
+          id:e._id,
+          name:e.name,
+          type:e.type,
+          colourways:e.colourways,
+          price:e.price,
+          offer_price:e.offer_price,
+          off_percent:e.off_percent,
+          pic:e.pic,
+          logo:e.logo,
+          heading:e.heading,
+          url:e.url}})}}>
           <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover"}}></Image>
           <Subimage>
             <Simg src={e.logo}></Simg>  
