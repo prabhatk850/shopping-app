@@ -8,6 +8,8 @@ import ReactImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { addFavoriteProducts } from '../Service/Product';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../App/addtocartSlice';
 
 
 const Wrapper=styled.div`
@@ -117,6 +119,7 @@ padding-bottom: 15px;
 
 
 function ProductDes() {
+    const dispatch = useDispatch()
     const location=useLocation()
     const {_id,
         name,
@@ -141,6 +144,12 @@ function ProductDes() {
             }
     ]
     const [accordian,SetAccordian]=useState(false)
+    const handleAddtocart=()=>{
+        const size= "UK 3"
+        console.log("first",_id)
+        const data={_id,name,type,price,pic,size}
+        dispatch(addToCart(data))
+    }
 
     const handleAccordian=()=>{
         SetAccordian(!accordian)
@@ -198,7 +207,7 @@ function ProductDes() {
             <Size>UK 6</Size>
             <Size>UK 6.5</Size>
         </div>
-        <Add>Add to bag</Add>
+        <Add onClick={handleAddtocart}>Add to bag</Add>
         <Add style={{backgroundColor:"white", color:"black"}} onClick={()=>{handlefav(_id,name)}}>Favorite <LiaHeart/> </Add>
         
         <Description>Kick it in comfort in the Nike Air Force 1.The feel of classic leather and details that made this shoe an icon are sure to make your sneaker style stand out on the street.</Description>

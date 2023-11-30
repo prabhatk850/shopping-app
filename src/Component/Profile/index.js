@@ -60,10 +60,15 @@ transition: .2s;
 
 
 const Title=styled.div`
-padding-top: 180px;
+padding-top: 220px;
+padding-bottom: 40px;
+
+&:hover{
+    padding-top: 170px;
+}
 `;
 const Button= styled.button`
-display: none;
+
 position:relative;
 background-color: White;
 color: black;
@@ -75,6 +80,7 @@ border: none;
 outline: none;
 font-size: 15px;
 font-weight: 500;
+margin: 0 0 0 15px;
 
 &:hover{
     background-color: gray;
@@ -86,7 +92,6 @@ font-weight: 500;
 const Pdiv=styled.div`
 height: 258px;
 overflow: hidden;
-border: solid 1px black;
 &:hover{
     ${Button}{
         display: block;
@@ -106,7 +111,9 @@ const Edit=styled.div`
 } */
 `;
 
-const Image=styled.div``;
+const Image=styled.div`
+
+`;
 
 function Index() {
 
@@ -173,7 +180,7 @@ function Index() {
                 <Gdiv  onClick={toggleIntrest}><div style={{fontSize:"20px",paddingBottom:"10px"}}>Add an Item</div><BsPlusCircle style={{height:"20px",width:"20px"}}/></Gdiv>
                    {dummyData.map((e)=>(
                 <Pdiv onClick={()=>{navigate("/product")}}>
-                <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover", backgroundPosition:"center" }}>
+                <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover"}}>
                     <Title>
                         <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>{e.title}</div>
                         <Button>Shop</Button>

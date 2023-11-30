@@ -50,3 +50,11 @@ export const addFavoriteProducts=(data)=>{
         console.log("error from fetch favproduct",error)
     })
 }
+
+export const addToCart=(data)=>{
+    return UserInstance.post(`${process.env.REACT_APP_BASE_URL}/api/addtocart`,data).then((result)=>{
+        return result
+    }).catch((error)=>{
+        console.log("error from fetch cart",error)
+    })
+}

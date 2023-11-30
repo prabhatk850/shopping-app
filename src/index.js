@@ -2,8 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./App.css";
 import Router from "./Router";
+import { Provider } from "react-redux";
+import store from "./Component/App/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Router />);
+root.render(
+<Provider store={store}>
+<Router />
+</Provider>);
 
 

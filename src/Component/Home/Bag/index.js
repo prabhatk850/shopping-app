@@ -85,18 +85,7 @@ const dummydata = [
         price: "8950"
 
     },
-    {
-        img: './AF1.jpeg',
-        name: "Nike Full Force",
-        product: "Men's Shoes",
-        colour: "White/Black",
-        size: "Size: 9",
-        quantity: "Quantity: 1",
-        price: "8950",
-        
-       
-
-    }
+   
 ]
 const Summary = [
     {

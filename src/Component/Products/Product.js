@@ -174,7 +174,7 @@ function Product(props) {
         
          
         <Div key={e._id}  onClick={()=>{navigate("/productdescription",{state:{
-          id:e._id,
+          _id:e._id,
           name:e.name,
           type:e.type,
           colourways:e.colourways,
