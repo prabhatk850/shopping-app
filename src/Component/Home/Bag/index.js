@@ -5,6 +5,12 @@ import Footer from '../../Footer/Footer';
 import {LiaHeart} from 'react-icons/lia';
 import {GoTrash} from 'react-icons/go';
 import Horizontalscroll from '../Horizontalscroll'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../App/addtocartSlice';
+import { addFavoriteProducts } from '../../Service/Product';
+import { updateQuantity } from '../../App/addtocartSlice';
+// import { useLocation } from 'react-router-dom';
 
 const Wrapper = styled.div``;
 const Heading = styled.div`
@@ -53,9 +59,7 @@ const Size = styled.div`
 color: gray;
 margin-right: 20px;
 `;
-const Quantity = styled.div`
-color: gray;
-`;
+
 const Price = styled.div`
 font-size: 20px;
 font-weight: 400;
@@ -73,85 +77,150 @@ const Text = styled.div`
 font-size: 18px;
 margin: 10px 0;
 `;
+const Minus = styled.div`
+height: 25px;
+width: 25px;
+display: flex;
+align-items: center;
+color: gray;
+justify-content: center;
+font-size: 20px;
+cursor: pointer;
+&:hover{
+    cursor: pointer;
+  }
+`;
+const Plus = styled.div`
+height: 25px;
+width: 25px;
+color: gray;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 20px;
+cursor: pointer;
+  &:hover{
+    cursor: pointer;;
+  }
+`;
+const Countq = styled.div`
+height: 25px;
+width: 25px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 15px;
+`;
+const Quantity = styled.div`
+display: flex;
+align-items: center;
 
-const dummydata = [
-    {
-        img: './AF1.jpeg',
-        name: "Nike Full Force",
-        product: "Men's Shoes",
-        colour: "White/Black",
-        size: "Size: 9",
-        quantity: "Quantity: 1",
-        price: "8950"
+`;
 
-    },
-   
-]
-const Summary = [
-    {
-        subTotal: " ₹ 8950.00",
-        extra: " ₹ 1250.00",
-        total: " ₹ 10200.00"
-    }]
+function Index() {
 
-function Index(e) {
-  return (
+    
+    const dispatch = useDispatch()
+    const product = useSelector((state) => state.cart)
+    const total = useSelector((state) => state.total)
+    const totalItems =  parseInt(useSelector((state) => state.totalItems)) || 0
+
+        const handlefav=(name,type,price,pic)=>{
+             const data={name,type,price,pic}
+            addFavoriteProducts(data).then((result)=>{
+                console.log("result",result)
+            }).catch((error)=>{
+                console.log("error",error)
+            })
+            console.log("ttt",data)
+            
+        }  
+
+    const handleRemoveFromCart = (_id)=>{
+        console.log("id",_id)
+        
+        dispatch(removeFromCart(_id))
+    
+      }
+      const handleQuantityMinus = (_id)=>{
+        const data ={"quantity":-1,_id}    
+          dispatch(updateQuantity(data))
+      }
+      const handleQuantityPlus = (_id)=>{
+        const data ={"quantity":1,_id}    
+        dispatch(updateQuantity(data))
+      }
+    
+
+  
+
+ 
+    return (
 
     <Wrapper>
         <Header/>
+        {totalItems===0 ? <div style={{display:"flex",justifyContent:"center",margin:"50px 0"}}>No Items in Bag</div>:
+        <div>
+
         <div style={{display:"flex", justifyContent:"center",margin:"50px 0"}}>
             <div style={{display:"flex", flexDirection:"column", width:"50%"}}>
         <Heading>Bag</Heading>
-                {dummydata.map((e) => (
-                    <div style={{display:"flex", flexDirection:"column", margin:"0 50px 0 0"}}>
+        
+                {product.map((e) => (
+                    <div key={e._id} style={{display:"flex", flexDirection:"column", margin:"0 50px 0 0"}}>
                         <Div>
                             <div style={{display:"flex"}}>
-                                <Img src={e.img}></Img>
+                                <Img src={e.pic}></Img>
                                 <About>
                                     <InnerHeading>
                                         {e.name}
                                     </InnerHeading>
                                     <Product>
-                                        {e.product}
+                                        {e.type}
                                     </Product>
-                                    <Colour>
-                                        {e.colour}
-                                    </Colour>
                                     <div style={{display:"flex",marginBottom:"20px"}}>
                          <Size>{e.size}</Size>
-                         <Quantity>{e.quantity}</Quantity>
+                         <Quantity>
+              <Minus onClick={()=>{handleQuantityMinus(e._id)}}>-</Minus>
+              <Countq>{e.quantity}</Countq>
+              <Plus onClick={()=>{handleQuantityPlus(e._id)}}>+</Plus>
+            </Quantity>
                      </div>
                      <div style={{display:"flex"}}>
-                         <LiaHeart style={{height:"25px",width:"25px",marginRight:"20px"}}/>
-                         <GoTrash style={{height:"25px",width:"25px"}}/>
+                         <div onClick={()=>{handlefav(e.name,e.type,e.price,e.pic)}} ><LiaHeart style={{height:"25px",width:"25px",marginRight:"20px"}}/></div>
+                         <div  onClick={()=>{handleRemoveFromCart(e._id)}}><GoTrash style={{height:"25px",width:"25px"}}/></div>
                         </div>
                                 </About>
                             </div>
-                            <Price>MRP: ₹ {e.price}.00 </Price>
+                            <Price>MRP: ₹ {e.price} </Price>
                         </Div>
                     </div>
                 ))}
             </div>
+            
             <div style={{display:"flex", flexDirection:"column", width:"30%"}}>
             <Heading>Summary</Heading>
-            {Summary.map((e) => (
+            
                 <div>
                 <div style={{display:"flex",justifyContent:"space-between"}}>
                     <Text>Subtotal</Text>
-                    <SubTotal>{e.subTotal}</SubTotal>
+                    <SubTotal>₹ {total}</SubTotal>
                 </div>
                 <div style={{display:"flex",justifyContent:"space-between"}}>
                     <Text>Extra Delivery & Handling</Text>
-                    <Extra>{e.extra}</Extra>
+                    <Extra>₹ 1250</Extra>
                 </div>
                 <div style={{borderBottom:"1px solid lightgray",marginBottom:"20px"}}></div>
                 <div style={{display:"flex",justifyContent:"space-between"}}>
                 <Text>Total</Text>
-                <Total>{e.total}</Total>
+                <Total>₹ {total + 1250}</Total>
                 </div>
-                </div>))}
+                </div>
             </div>
+                
         </div>
+        </div>}
+
         <Heading1>You Might Also Like </Heading1>
         
              <Horizontalscroll img={"./Aor1.jpeg"} Text={"Nike Sportswear"} Subtext={"Men's Overized T-shirt"} Cost={"$ 3 095"}

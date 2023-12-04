@@ -78,6 +78,9 @@ padding: 15px 0 0 35px;
 &:hover{
     border: 1px solid black;
 }
+&:active{
+    border: 1px solid black;
+}
 
 `;
 const SizeGuide=styled.div`
@@ -119,6 +122,7 @@ padding-bottom: 15px;
 
 
 function ProductDes() {
+    const [size,SetSize]=useState(false)
     const dispatch = useDispatch()
     const location=useLocation()
     const {_id,
@@ -145,9 +149,7 @@ function ProductDes() {
     ]
     const [accordian,SetAccordian]=useState(false)
     const handleAddtocart=()=>{
-        const size= "UK 3"
-        console.log("first",_id)
-        const data={_id,name,type,price,pic,size}
+        const data={_id,name,type,price,pic,size,quantity:1,size}
         dispatch(addToCart(data))
     }
 
@@ -198,14 +200,16 @@ function ProductDes() {
             <SizeGuide>Size Guide</SizeGuide>
         </div>
         <div className='dflex' style={{display:"grid", gridTemplateColumns:"repeat(3,minmax(0, 1fr))"}}>
-            <Size>UK 3</Size>
-            <Size>UK 3.5</Size>
-            <Size>UK 4</Size>
-            <Size>UK 4.5</Size>
-            <Size>UK 5</Size>
-            <Size>UK 5.5</Size>
-            <Size>UK 6</Size>
-            <Size>UK 6.5</Size>
+            <Size onClick={()=>{SetSize("UK 3")}}>UK 3</Size>
+            <Size onClick={()=>{SetSize("UK 4")}}>UK 4</Size>
+            <Size onClick={()=>{SetSize("UK 5")}}>UK 5</Size>
+            <Size onClick={()=>{SetSize("UK 6")}}>UK 6</Size>
+            <Size onClick={()=>{SetSize("UK 7")}}>UK 7</Size>
+            <Size onClick={()=>{SetSize("UK 8")}}>UK 8</Size>
+            <Size onClick={()=>{SetSize("UK 9")}}>UK 9</Size>
+            <Size onClick={()=>{SetSize("UK 10")}}>UK 10</Size>
+            <Size onClick={()=>{SetSize("UK 11")}}>UK 11</Size>
+            <Size onClick={()=>{SetSize("UK 12")}}>UK 12</Size>
         </div>
         <Add onClick={handleAddtocart}>Add to bag</Add>
         <Add style={{backgroundColor:"white", color:"black"}} onClick={()=>{handlefav(_id,name)}}>Favorite <LiaHeart/> </Add>

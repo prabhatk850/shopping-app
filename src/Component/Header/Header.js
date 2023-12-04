@@ -8,6 +8,8 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { doLoggedOut } from '../Service/Auth'
 import { getUserDetails } from '../Service/Profile'
+import { useSelector } from 'react-redux'
+
 
 const Container=styled.div`
 
@@ -45,7 +47,7 @@ height:60px;
 
 const Options =styled.div`
 display: flex;
-padding-right: 35px;
+padding-right: 45px;
 margin-top: 10px;
 
 `;
@@ -169,7 +171,7 @@ function Header() {
  const [isLoggedOut,setIsLoggedOut]=useState(true)
 
   const navigate=useNavigate()
-
+  const totalItems = parseInt(useSelector((state) => state.totalItems)) || " "
   const handleHover=(event)=>{
     event.stopPropagation();
     navigate("/product");
@@ -179,7 +181,6 @@ function Header() {
     const token=localStorage.getItem("token")
     setIsLoggedOut(token?false:true)
     getUserDetails().then((result)=>{
-      console.log("user",result.data)
       setUserDetail(result.data)
     }).catch((err)=>{
       console.log("error for getuserDetails",err)
@@ -528,8 +529,10 @@ function Header() {
        </Search>
 
        <Hover onClick={()=>{navigate("/favorite")}}><LiaHeart style={{height:'24px',marginRight:"20px",marginLeft:"20px",paddingTop:"10px", width:"24px"}}/>
+       
        </Hover>
-       <Hover onClick={()=>{navigate("/bag")}}><IoBagOutline  style={{height:'24px',marginRight:"15px",paddingTop:"10px", width:"24px"}}/>
+       <Hover  style={{display:"flex" }} onClick={()=>{navigate("/bag")}}><IoBagOutline  style={{height:'24px',marginRight:"15px",paddingTop:"10px", width:"24px"}}/>
+       <div style={{marginLeft:"-31px",marginTop:"16px",fontSize:"14px"}}>{totalItems}</div>
        </Hover>
     </Options>
   
