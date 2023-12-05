@@ -24,8 +24,7 @@ import styled from 'styled-components'
  padding-bottom: 50px;
  padding-top: 50px;
  &:hover{
-   
-    cursor: pointer;
+  cursor: pointer;
 }
 
  `;

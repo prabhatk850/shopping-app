@@ -7,6 +7,7 @@ import DoubleImg from '../Home/DoubleImg'
 import HorizontalScroll from '../Home/Horizontalscroll'
 import Footer from '../Footer/Footer'
 import Hiddendiv from '../Home/Hiddendiv'
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper =styled.div``;
 const SubSection =styled.div``;
@@ -14,12 +15,24 @@ const Div =styled.div`
 font-size: 25px;
 padding: 30px 0;
 `;
+const Piv =styled.div`
+font-weight: 500;
+padding: 30px 25px;
+font-size: 16px;
+&:hover{
+  cursor: pointer;
+}
+`;
 const Headings = styled.div`
 margin: 0 0 30px 45px;
 font-size: 25px;
 `;
 
-function index(props) {
+function Index(props) {
+
+  const navigate = useNavigate()
+
+
   return (
     <Wrapper>
         <Header/>
@@ -30,9 +43,9 @@ function index(props) {
             {props.Gender}
         </Div>
         <SubSection style={{display:"flex"}}>
-            <div style={{fontSize:"16px",fontWeight:"500",padding:"30px 25px"}} >{props.T1}</div>
-            <div style={{fontSize:"16px",fontWeight:"500",padding:"30px 25px"}} >{props.T2}</div>
-            <div style={{fontSize:"16px",fontWeight:"500",padding:"30px 25px"}} >{props.T3}</div>
+            <Piv onClick={()=>{navigate('/product',{state:{MHeading1:props.Gender,SubHeading:props.T1}})}}>{props.T1}</Piv>
+            <Piv onClick={()=>{navigate('/product',{state:{MHeading1:props.Gender,SubHeading:props.T2}})}}>{props.T2}</Piv>
+            <Piv onClick={()=>{navigate('/product',{state:{MHeading1:props.Gender,SubHeading:props.T3}})}}>{props.T3}</Piv>
         </SubSection>
         <div></div>
         </div>
@@ -57,4 +70,4 @@ function index(props) {
   )
 }
 
-export default index
+export default Index

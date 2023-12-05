@@ -10,6 +10,7 @@ import { addFavoriteProducts } from '../Service/Product';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../App/addtocartSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const Wrapper=styled.div`
@@ -75,12 +76,15 @@ margin: 5px 5px;
 border-radius: 5px;
 padding: 15px 0 0 35px;
 
+
 &:hover{
     border: 1px solid black;
+    /* border: ${props => props.Size?"gray":"black"}; */
 }
-&:active{
-    border: 1px solid black;
-}
+
+&:active {
+    border-color: black;
+  }
 
 `;
 const SizeGuide=styled.div`
@@ -123,6 +127,8 @@ padding-bottom: 15px;
 
 function ProductDes() {
     const [size,SetSize]=useState(false)
+    const [activeDiv, setActiveDiv] = useState(null);
+
     const dispatch = useDispatch()
     const location=useLocation()
     const {_id,
@@ -171,7 +177,13 @@ function ProductDes() {
           headding:"Delivery & Returns"
         }
     ]
-      
+
+    const handdleSize = (size,id) => {
+        SetSize(size)
+        setActiveDiv(id)
+    }
+    const navigate = useNavigate();
+
 
   return (
     <Wrapper>
@@ -189,28 +201,30 @@ function ProductDes() {
         </div>
        
         <Photos style={{marginTop:"40px"}}>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
-            <Img src='./AF1.jpeg' alt='' ></Img>
+            <Img onClick={()=>{navigate('/product',{state:{MHeading1:type,SubHeading:name}})}} src='./AF1.jpeg' alt='' ></Img>
+            <Img onClick={()=>{navigate('/product',{state:{MHeading1:type,SubHeading:name}})}} src='./AF1.jpeg' alt='' ></Img>
+            <Img onClick={()=>{navigate('/product',{state:{MHeading1:type,SubHeading:name}})}} src='./AF1.jpeg' alt='' ></Img>
+            <Img onClick={()=>{navigate('/product',{state:{MHeading1:type,SubHeading:name}})}} src='./AF1.jpeg' alt='' ></Img>
        </Photos>
         
         <div className='dflex' style={{justifyContent:"space-between",margin:"30px 0 10px 0"}} >
             <SelectSize>Select Size</SelectSize>
             <SizeGuide>Size Guide</SizeGuide>
         </div>
+        {[3].map((id) => (
         <div className='dflex' style={{display:"grid", gridTemplateColumns:"repeat(3,minmax(0, 1fr))"}}>
-            <Size onClick={()=>{SetSize("UK 3")}}>UK 3</Size>
-            <Size onClick={()=>{SetSize("UK 4")}}>UK 4</Size>
-            <Size onClick={()=>{SetSize("UK 5")}}>UK 5</Size>
-            <Size onClick={()=>{SetSize("UK 6")}}>UK 6</Size>
-            <Size onClick={()=>{SetSize("UK 7")}}>UK 7</Size>
-            <Size onClick={()=>{SetSize("UK 8")}}>UK 8</Size>
-            <Size onClick={()=>{SetSize("UK 9")}}>UK 9</Size>
-            <Size onClick={()=>{SetSize("UK 10")}}>UK 10</Size>
-            <Size onClick={()=>{SetSize("UK 11")}}>UK 11</Size>
-            <Size onClick={()=>{SetSize("UK 12")}}>UK 12</Size>
+            
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 3",id)}>UK 3</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 4",id)}>UK 4</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 5",id)}>UK 5</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 6",id)}>UK 6</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 7",id)}>UK 7</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 8",id)}>UK 8</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 9",id)}>UK 9</Size>
+            <Size key={id} active={id === activeDiv} onClick={() => handdleSize("UK 10",id)}>UK 10</Size>                
+            
         </div>
+        ))}
         <Add onClick={handleAddtocart}>Add to bag</Add>
         <Add style={{backgroundColor:"white", color:"black"}} onClick={()=>{handlefav(_id,name)}}>Favorite <LiaHeart/> </Add>
         

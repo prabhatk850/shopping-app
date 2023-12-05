@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../App/addtocartSlice';
 import { addFavoriteProducts } from '../../Service/Product';
 import { updateQuantity } from '../../App/addtocartSlice';
+import { useNavigate } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 
 const Wrapper = styled.div``;
@@ -119,7 +120,7 @@ align-items: center;
 
 function Index() {
 
-    
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     const product = useSelector((state) => state.cart)
     const total = useSelector((state) => state.total)
@@ -170,7 +171,7 @@ function Index() {
                     <div key={e._id} style={{display:"flex", flexDirection:"column", margin:"0 50px 0 0"}}>
                         <Div>
                             <div style={{display:"flex"}}>
-                                <Img src={e.pic}></Img>
+                                <Img onClick={()=>{navigate('/product',{state:{MHeading:e.type,SubHeading:e.name}})}} src={e.pic}></Img>
                                 <About>
                                     <InnerHeading>
                                         {e.name}

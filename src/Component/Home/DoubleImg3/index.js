@@ -65,7 +65,7 @@ function Index(props) {
   return (
     <Main>
     <div style={{width:"90px"}}></div>
-    <Wrapper onClick={()=>{navigate("/product")}}>
+    <Wrapper onClick={()=>{navigate("/product",{state:{MHeading1:"MH1",SubHeading:"SH1"}})}}>
     <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
        <div style={{paddingTop:"500px"}}>
          <Title>
@@ -79,7 +79,7 @@ function Index(props) {
     </Image>
     </Wrapper>
     <div style={{width:"30px"}}></div>
-    <Wrapper onClick={()=>{navigate("/product")}}>
+    <Wrapper onClick={()=>{navigate("/product",{state:{MHeading1:"MH2",SubHeading:"SH2"}})}}>
     <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
        <div style={{paddingTop:"500px"}}> <Title>
         {props.Title2}

@@ -61,7 +61,7 @@ function Index(props) {
     
   let navigate = useNavigate();
   return (
-    <Wrapper onClick={()=>{navigate("/product")}}>
+    <Wrapper onClick={()=>{navigate("/product",{state:{MHeading1:"Shoes",SubHeading:props.Title.Title}})}}>
     <div style={{display:"flex"}}>
         <div style={{width:"45px"}}></div>
           <Img src={props.url} alt='' />

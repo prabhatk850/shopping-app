@@ -42,7 +42,7 @@ function Index(props) {
   const navigate = useNavigate();
   return (
     <Div>
-      <Main onClick={()=>{navigate("/product")}}>
+      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Subtitle,SubHeading:props.Text}})}}>
         <Image src={props.img}></Image>
         <Wrapper>
           <Container>
@@ -53,7 +53,7 @@ function Index(props) {
         </Wrapper>
       </Main>
         
-      <Main onClick={()=>{navigate("/product")}}>
+      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Subtitle2,SubHeading:props.Text2}})}}>
         <Image src={props.img2}></Image>
         <Wrapper>
           <Container>
@@ -64,7 +64,7 @@ function Index(props) {
         </Wrapper>
       </Main>
       
-      <Main onClick={()=>{navigate("/product")}}>
+      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Subtitle3,SubHeading:props.Text3}})}}>
         <Image src={props.img3}></Image>
         <Wrapper>
           <Container>
@@ -75,7 +75,7 @@ function Index(props) {
         </Wrapper>
       </Main>
       
-      <Main onClick={()=>{navigate("/product")}}>
+      <Main onClick={()=>{navigate("/product" ,{state:{MHeading1:props.Subtitle4,SubHeading:props.Text4}})}}>
         <Image src={props.img4}></Image>
         <Wrapper>
           <Container>
@@ -86,7 +86,7 @@ function Index(props) {
         </Wrapper>
       </Main>
       
-      <Main onClick={()=>{navigate("/product")}}>
+      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Subtitle5,SubHeading:props.Text5}})}}>
         <Image src={props.img5}></Image>
         <Wrapper>
           <Container>
@@ -96,7 +96,7 @@ function Index(props) {
         </Wrapper>
       </Main>
       
-      <Main onClick={()=>{navigate("/product")}}>
+      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Subtitle6,SubHeading:props.Text6}})}}>
         <Image src={props.img6}></Image>
         <Wrapper>
           <Container>

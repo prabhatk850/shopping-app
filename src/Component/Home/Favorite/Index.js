@@ -4,6 +4,8 @@ import Header from './../../../Component/Header/Header'
 import Horizontalscroll from '../Horizontalscroll'
 import Footer from '../../Footer/Footer';
 import { getFavoriteProducts } from '../../Service/Product';
+import { useNavigate } from 'react-router-dom';
+import { FetchProducts } from '../../Service/Product';
 
 const Wrapper=styled.div`
 `;
@@ -42,29 +44,16 @@ display: flex;
 justify-content: space-between;
 `;
 
-//  const dummyData=[
-    // {
-    //     img:"./AF1.jpeg",
-    //     Text:"Nike Air Force 1 '07 EasyOn",
-    //     Subtext:"Shoes",
-    //     Cost:"$189.00"
-    // },
-    // {
-    //     img:"./AF1.jpeg",
-    //     Text:"Nike Air Force 1 '07 EasyOn",
-    //     Subtext:"Shoes",
-    //     Cost:"$189.00"
-    // },
-    // {
-    //     img:"./AF1.jpeg",
-    //     Text:"Nike Air Force 1 '07 EasyOn",
-    //     Subtext:"Shoes",
-    //     Cost:"$189.00"
-    // }]
 
 function Index() {
     const [favoriteProducts,setFavoriteProducts]=useState([]);
+    const [productdata,SetProductdata]=useState([]);
     useEffect(() => {
+        FetchProducts().then((result)=>{
+            SetProductdata(result.data)
+            console.log("product",productdata)
+        });
+
         getFavoriteProducts().then((result) => {
             if (Array.isArray(result.data)) {
                 setFavoriteProducts(result.data);
@@ -75,6 +64,9 @@ function Index() {
             console.log("error from fetch product", error);
         });
     }, []);
+
+    const navigate=useNavigate();
+
 
   return (
     <Wrapper>
@@ -92,7 +84,18 @@ function Index() {
         <div style={{  display: "grid",margin: "30px 0",width:"100%" ,gridTemplateColumns: "31% 31% 31%", gap:"45px",rowGap:"85px", height:"auto"}}>
          
         {favoriteProducts?.map((e)=>(        
-        <Div>
+        <Div key={e._id} onClick={()=>{navigate("/productdescription",{state:{
+            _id:e._id,
+            name:e.name,
+            type:e.type,
+            colourways:e.colourways,
+            price:e.price,
+            offer_price:e.offer_price,
+            off_percent:e.off_percent,
+            pic:e.pic,
+            logo:e.logo,
+            heading:e.heading,
+            url:e.url}})}}>
             <Img src={e.pic} ></Img>
             <Container>
             <Text>{e.name}</Text>

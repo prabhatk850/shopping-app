@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux'
 
 
 const Container=styled.div`
-
+width: 100%;
 `;
 const Help =styled.div`
   display: none;
@@ -31,6 +31,7 @@ color: black;
 
 const Wrapper=styled.div`
 display: flex;
+width: 100%;
 justify-content: space-between;
 background-color: #F5F5F5;
 padding: 8px 0;
@@ -38,9 +39,12 @@ padding: 8px 0;
 
 const Wrapper1=styled.div`
 display: flex;
+width: 100%;
 justify-content: space-between;
-padding: 0px 0;
 height:60px;
+/* @media (max-width: 768px) {
+  width: 25%;
+} */
 `;
 
 
@@ -174,7 +178,9 @@ function Header() {
   const totalItems = parseInt(useSelector((state) => state.totalItems)) || " "
   const handleHover=(event)=>{
     event.stopPropagation();
-    navigate("/product");
+    const MHeading1=event.target.getAttribute("data-value")
+    const SubHeading=event.target.innerText
+    navigate("/product",{state:{MHeading1,SubHeading}});
   }
 
   useEffect(()=>{
@@ -240,61 +246,63 @@ function Header() {
 
 
       <Wrapper1>
-
+          
       <Hover><SiNike onClick={()=>{navigate("/")}} style={{height:'60px',marginLeft:"50px",marginRight:"1px", width:"60px"}}/>
       </Hover>
-
+          
 
     <Options>
         
         <div>
         <Title >New & Feature
-  {/* <Overlay> */}
-          <Div style={{width:"80%",padding:"0 10%"}} >
+  
+          <Div style={{width:"80%",padding:"50px 10%"}} >
             <div style={{display:"flex"}}>
           <Piv>  
               <Heading>New & Feature</Heading>
-                <Subtitle onClick={handleHover} >New Arrival</Subtitle>
-                <Subtitle onClick={handleHover}>Latest Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Latest Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>SNKRS Launch Calender</Subtitle>
-                <Subtitle onClick={handleHover}>Top Kicks Under ₹ 8000.00</Subtitle>
+                <Subtitle data-value="New & Feature" onClick={handleHover} >New Arrival</Subtitle>
+                <Subtitle data-value="New & Feature" onClick={handleHover}>Latest Shoes</Subtitle>
+                <Subtitle data-value="New & Feature" onClick={handleHover}>Latest Clothing</Subtitle>
+                <Subtitle data-value="New & Feature" onClick={handleHover}>SNKRS Launch Calender</Subtitle>
+                <Subtitle data-value="New & Feature" onClick={handleHover}>Top Kicks Under ₹ 8000.00</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Shop Icons</Heading>
-                <Subtitle onClick={handleHover}>Air Force 1</Subtitle>
-                <Subtitle onClick={handleHover}>Air Jordan 1</Subtitle>
-                <Subtitle onClick={handleHover}>Air Max</Subtitle>
-                <Subtitle onClick={handleHover}>Dunk</Subtitle>
-                <Subtitle onClick={handleHover}>Cortez</Subtitle>
-                <Subtitle onClick={handleHover}>Blazer</Subtitle>
-                <Subtitle onClick={handleHover}>Pegasus</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Air Force 1</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Air Max</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Blazer</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>React</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Air Jordan 1</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Dunk</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Cortez</Subtitle>
+                <Subtitle data-value="Shop Icons" onClick={handleHover}>Pegasus</Subtitle>
           </Piv>
           <Piv>  
               <Heading>New for Men</Heading>
-                <Subtitle onClick={handleHover}>Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>Accessories</Subtitle>
-                <Subtitle onClick={handleHover}>Shop All new</Subtitle>
+                <Subtitle data-value="New for Men" onClick={handleHover}>Shoes</Subtitle>
+                <Subtitle data-value="New for Men" onClick={handleHover}>Clothing</Subtitle>
+                <Subtitle data-value="New for Men" onClick={handleHover}>Accessories</Subtitle>
+                <Subtitle data-value="New for Men" onClick={handleHover}>Shop All new</Subtitle>
                 
           </Piv>
           <Piv>  
               <Heading>New for Women</Heading>
-                <Subtitle onClick={handleHover}>Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>Accessories</Subtitle>
-                <Subtitle onClick={handleHover}>Shop All new</Subtitle>
+                <Subtitle data-value="New for Women" onClick={handleHover}>Shoes</Subtitle>
+                <Subtitle data-value="New for Women" onClick={handleHover}>Clothing</Subtitle>
+                <Subtitle data-value="New for Women" onClick={handleHover}>Accessories</Subtitle>
+                <Subtitle data-value="New for Women" onClick={handleHover}>Shop All new</Subtitle>
           </Piv>
           <Piv>  
               <Heading>New for Kids</Heading>
-                <Subtitle onClick={handleHover}>Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>Accessories</Subtitle>
-                <Subtitle onClick={handleHover}>Shop All new</Subtitle>
+                <Subtitle data-value="New for Kids" onClick={handleHover}>Shoes</Subtitle>
+                <Subtitle data-value="New for Kids" onClick={handleHover}>Clothing</Subtitle>
+                <Subtitle data-value="New for Kids" onClick={handleHover}>Accessories</Subtitle>
+                <Subtitle data-value="New for Kids" onClick={handleHover}>Shop All new</Subtitle>
           </Piv>
             </div>
           </Div>
-  {/* </Overlay>       */}
+
         </Title>
         <Udl></Udl>
         </div>
@@ -305,60 +313,60 @@ function Header() {
         <div style={{display:"flex",flexWrap:"wrap"}}>
           <Piv>  
               <Heading>Featured</Heading>
-                <Subtitle onClick={handleHover}>New Releases</Subtitle>
-                <Subtitle onClick={handleHover}>Bestseller</Subtitle>
-                <Subtitle onClick={handleHover}>Member Exclusive</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Retro Running</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>New Releases</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Bestseller</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Member Exclusive</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Retro Running</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Shoes</Heading>
-                <Subtitle onClick={handleHover}>All Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Newest Sneakers</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Lifestyle</Subtitle>
-                <Subtitle onClick={handleHover}>Running</Subtitle>
-                <Subtitle onClick={handleHover}>Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Football</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>All Shoes</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Newest Sneakers</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Lifestyle</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Running</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Basketball</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Football</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Clothing</Heading>
-                <Subtitle onClick={handleHover}>All Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>Tops & T-Shirts</Subtitle>
-                <Subtitle onClick={handleHover}>Shorts</Subtitle>
-                <Subtitle onClick={handleHover}>Pants & Legging</Subtitle>
-                <Subtitle onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>All Clothing</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Tops & T-Shirts</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Shorts</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Pants & Legging</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
                 
           </Piv>
           <Piv>  
               <Heading>Shop By Sports</Heading>
-                <Subtitle onClick={handleHover}>Running</Subtitle>
-                <Subtitle onClick={handleHover}>Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Football</Subtitle>
-                <Subtitle onClick={handleHover}>Tennis</Subtitle>
-                <Subtitle onClick={handleHover}>Gym</Subtitle>
-                <Subtitle onClick={handleHover}>Yoga</Subtitle>
-                <Subtitle onClick={handleHover}>Golf</Subtitle>
-                <Subtitle onClick={handleHover}>Skateboard</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Running</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Basketball</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Football</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Tennis</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Gym</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Yoga</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Golf</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Skateboard</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Jordan</Heading>
-                <Subtitle onClick={handleHover}>All Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>New Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan Lifestyle</Subtitle>
+                <Subtitle data-value="Jordan" onClick={handleHover}>All Jordan</Subtitle>
+                <Subtitle data-value="Jordan" onClick={handleHover}>New Jordan</Subtitle>
+                <Subtitle data-value="Jordan" onClick={handleHover}>Jordan Shoes</Subtitle>
+                <Subtitle data-value="Jordan" onClick={handleHover}>Jordan Clothing</Subtitle>
+                <Subtitle data-value="Jordan" onClick={handleHover}>Jordan Basketball</Subtitle>
+                <Subtitle data-value="Jordan" onClick={handleHover}>Jordan Lifestyle</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Shop By Brand</Heading>
-                <Subtitle onClick={handleHover}>Nike Sportswear</Subtitle>
-                <Subtitle onClick={handleHover}>Nike Lab</Subtitle>
-                <Subtitle onClick={handleHover}>Nike By You</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>ACG</Subtitle>
-                <Subtitle onClick={handleHover}>NBA</Subtitle>
-                <Subtitle onClick={handleHover}>Nike SB</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike Sportswear</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike Lab</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike By You</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>ACG</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>NBA</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike SB</Subtitle>
           </Piv>
             </div>
           </Div>
@@ -371,52 +379,51 @@ function Header() {
         <div style={{display:"flex",flexWrap:"wrap"}}>
         <Piv>  
               <Heading>Featured</Heading>
-                <Subtitle onClick={handleHover}>New Releases</Subtitle>
-                <Subtitle onClick={handleHover}>Bestseller</Subtitle>
-                <Subtitle onClick={handleHover}>Member Exclusive</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Retro Running</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>New Releases</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Bestseller</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Member Exclusive</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Retro Running</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Shoes</Heading>
-                <Subtitle onClick={handleHover}>All Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Newest Sneakers</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Lifestyle</Subtitle>
-                <Subtitle onClick={handleHover}>Running</Subtitle>
-                <Subtitle onClick={handleHover}>Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Football</Subtitle>
+              <Subtitle data-value="Shoes" onClick={handleHover}>All Shoes</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Newest Sneakers</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Lifestyle</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Running</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Basketball</Subtitle>
+                <Subtitle data-value="Shoes" onClick={handleHover}>Football</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Clothing</Heading>
-                <Subtitle onClick={handleHover}>All Clothing</Subtitle>
-                <Subtitle onClick={handleHover}>Tops & T-Shirts</Subtitle>
-                <Subtitle onClick={handleHover}>Sports Bra</Subtitle>
-                <Subtitle onClick={handleHover}>Shorts</Subtitle>
-                <Subtitle onClick={handleHover}>Pants & Legging</Subtitle>
-                <Subtitle onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>All Clothing</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Tops & T-Shirts</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Shorts</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Pants & Legging</Subtitle>
+                <Subtitle data-value="Clothing" onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
                 
           </Piv>
           <Piv>  
               <Heading>Shop By Sports</Heading>
-                <Subtitle onClick={handleHover}>Running</Subtitle>
-                <Subtitle onClick={handleHover}>Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Football</Subtitle>
-                <Subtitle onClick={handleHover}>Tennis</Subtitle>
-                <Subtitle onClick={handleHover}>Gym</Subtitle>
-                <Subtitle onClick={handleHover}>Yoga</Subtitle>
-                <Subtitle onClick={handleHover}>Golf</Subtitle>
-                <Subtitle onClick={handleHover}>Skateboard</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Running</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Basketball</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Football</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Tennis</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Gym</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Yoga</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Golf</Subtitle>
+                <Subtitle data-value="Shop By Sports" onClick={handleHover}>Skateboard</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Shop By Brand</Heading>
-                <Subtitle onClick={handleHover}>Nike Sportswear</Subtitle>
-                <Subtitle onClick={handleHover}>Nike Lab</Subtitle>
-                <Subtitle onClick={handleHover}>Nike By You</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>ACG</Subtitle>
-                <Subtitle onClick={handleHover}>NBA</Subtitle>
-                <Subtitle onClick={handleHover}>Nike SB</Subtitle>
+              <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike Sportswear</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike Lab</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike By You</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>ACG</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>NBA</Subtitle>
+                <Subtitle data-value="Shop By Brand" onClick={handleHover}>Nike SB</Subtitle>
           </Piv>
           </div>
           </Div>
@@ -428,58 +435,57 @@ function Header() {
         <div style={{display:"flex",flexWrap:"wrap"}}>
         <Piv>  
               <Heading>Featured</Heading>
-              <Subtitle onClick={handleHover}>New Releases</Subtitle>
-                {/* <Subtitle onClick={handleHover}>New Releases</Subtitle> */}
-                <Subtitle onClick={handleHover}>Bestseller</Subtitle>
-                <Subtitle onClick={handleHover}>Member Exclusive</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Retro Running</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>New Releases</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Bestseller</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Member Exclusive</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Featured" onClick={handleHover}>Retro Running</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Boy's Shoes</Heading>
-                <Subtitle onClick={handleHover}>All Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Older Boys (7 - 14 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Younger Boys (4 - 7 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Babies & Toddler (0 - 4 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Lifestyle</Subtitle>
-                <Subtitle onClick={handleHover}>Running</Subtitle>
-                <Subtitle onClick={handleHover}>Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Football</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>All Shoes</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Older Boys (7 - 14 Years)</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Younger Boys (4 - 7 Years)</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Babies & Toddler (0 - 4 Years)</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Lifestyle</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Running</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Basketball</Subtitle>
+                <Subtitle data-value="Boy's Shoes" onClick={handleHover}>Football</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Girls's Shoes</Heading>
-                <Subtitle onClick={handleHover}>All Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Older Girls (7 - 14 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Younger Girls (4 - 7 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Babies & Toddler (0 - 4 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Jordan</Subtitle>
-                <Subtitle onClick={handleHover}>Lifestyle</Subtitle>
-                <Subtitle onClick={handleHover}>Running</Subtitle>
-                <Subtitle onClick={handleHover}>Basketball</Subtitle>
-                <Subtitle onClick={handleHover}>Football</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>All Shoes</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Older Girls (7 - 14 Years)</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Younger Girls (4 - 7 Years)</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Babies & Toddler (0 - 4 Years)</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Jordan</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Lifestyle</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Running</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Basketball</Subtitle>
+                <Subtitle data-value="Girls's Shoes" onClick={handleHover}>Football</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Kids By Age</Heading>
-                <Subtitle onClick={handleHover}>Olders Kids (7 - 14 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Younger Kids (4 - 7 Years)</Subtitle>
-                <Subtitle onClick={handleHover}>Babies & Toddler (0 - 4 Years)</Subtitle>
+                <Subtitle data-value="Kids By Age" onClick={handleHover}>Olders Kids (7 - 14 Years)</Subtitle>
+                <Subtitle data-value="Kids By Age" onClick={handleHover}>Younger Kids (4 - 7 Years)</Subtitle>
+                <Subtitle data-value="Kids By Age" onClick={handleHover}>Babies & Toddler (0 - 4 Years)</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Boy's Clothing</Heading>
-                <Subtitle onClick={handleHover}>Tops & T-Shirts</Subtitle>
-                <Subtitle onClick={handleHover}>Shorts</Subtitle>
-                <Subtitle onClick={handleHover}>Pants & Legging</Subtitle>
-                <Subtitle onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
-                <Subtitle onClick={handleHover}>All Boys Clothing</Subtitle>
+                <Subtitle data-value="Boy's Clothing" onClick={handleHover}>Tops & T-Shirts</Subtitle>
+                <Subtitle data-value="Boy's Clothing" onClick={handleHover}>Shorts</Subtitle>
+                <Subtitle data-value="Boy's Clothing" onClick={handleHover}>Pants & Legging</Subtitle>
+                <Subtitle data-value="Boy's Clothing" onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
+                <Subtitle data-value="Boy's Clothing" onClick={handleHover}>All Boys Clothing</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Girls's Clothing</Heading>
-                <Subtitle onClick={handleHover}>Tops & T-Shirts</Subtitle>
-                <Subtitle onClick={handleHover}>Sports Bra</Subtitle>
-                <Subtitle onClick={handleHover}>Pants & Legging</Subtitle>
-                <Subtitle onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
-                <Subtitle onClick={handleHover}>All Boys Clothing</Subtitle>
+                <Subtitle data-value="Girls's Clothing" onClick={handleHover}>Tops & T-Shirts</Subtitle>
+                <Subtitle data-value="Girls's Clothing" onClick={handleHover}>Sports Bra</Subtitle>
+                <Subtitle data-value="Girls's Clothing" onClick={handleHover}>Pants & Legging</Subtitle>
+                <Subtitle data-value="Girls's Clothing" onClick={handleHover}>Hoddies & Sweatshirt</Subtitle>
+                <Subtitle data-value="Girls's Clothing" onClick={handleHover}>All Boys Clothing</Subtitle>
           </Piv>
           </div>
           </Div>
@@ -491,30 +497,30 @@ function Header() {
           <div style={{display:"flex",flexWrap:"wrap"}}>
           <Piv>  
               <Heading>Sale</Heading>
-                <Subtitle onClick={handleHover}>Sale All Sale</Subtitle>
-                <Subtitle onClick={handleHover}>Shoes Sale</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing Sale</Subtitle>
-                <Subtitle onClick={handleHover}>Accessories & Equipment Sale</Subtitle>
+                <Subtitle data-value="Sale" onClick={handleHover}>Sale All Sale</Subtitle>
+                <Subtitle data-value="Sale" onClick={handleHover}>Shoes Sale</Subtitle>
+                <Subtitle data-value="Sale" onClick={handleHover}>Clothing Sale</Subtitle>
+                <Subtitle data-value="Sale" onClick={handleHover}>Accessories & Equipment Sale</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Mens's Sale</Heading>
-                <Subtitle onClick={handleHover}>Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing</Subtitle>
+                <Subtitle data-value="Mens's Sale" onClick={handleHover}>Shoes</Subtitle>
+                <Subtitle data-value="Mens's Sale" onClick={handleHover}>Clothing</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Women's Sale</Heading>
-                <Subtitle onClick={handleHover}>Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing</Subtitle>
+                <Subtitle data-value="Women's Sale" onClick={handleHover}>Shoes</Subtitle>
+                <Subtitle data-value="Women's Sale" onClick={handleHover}>Clothing</Subtitle>
           </Piv>
           <Piv>  
               <Heading>Kids's Sale</Heading>
-                <Subtitle onClick={handleHover}>Shoes</Subtitle>
-                <Subtitle onClick={handleHover}>Clothing</Subtitle>
+                <Subtitle data-value="Kids's Sale" onClick={handleHover}>Shoes</Subtitle>
+                <Subtitle data-value="Kids's Sale" onClick={handleHover}>Clothing</Subtitle>
           </Piv>
           </div>
           </Div>
         </Title>
-        <Title>SNKRS
+        <Title> SNKRS
         <Udl></Udl>
         </Title>
     </Options>
@@ -532,7 +538,7 @@ function Header() {
        
        </Hover>
        <Hover  style={{display:"flex" }} onClick={()=>{navigate("/bag")}}><IoBagOutline  style={{height:'24px',marginRight:"15px",paddingTop:"10px", width:"24px"}}/>
-       <div style={{marginLeft:"-31px",marginTop:"16px",fontSize:"14px"}}>{totalItems}</div>
+       <div style={{marginLeft:"-33px",marginTop:"20px",fontSize:"10px"}}>{totalItems}</div>
        </Hover>
     </Options>
   

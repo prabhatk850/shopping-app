@@ -65,7 +65,7 @@ function Index(props) {
   return (
     <Main>
     <div style={{width:"90px"}}></div>
-    <Wrapper onClick={()=>{navigate("/product")}}>
+    <Wrapper onClick={()=>{navigate("/product",{state:{MHeading1:"MH1",SubHeading:"SH1"}})}}>
     <Image style={{backgroundImage: `url(${props.img})`, backgroundSize:"cover"}}>
     <div style={{paddingTop:"500px"}}>
          <Title>
@@ -79,19 +79,20 @@ function Index(props) {
     </Image>
     </Wrapper>
     <div style={{width:"30px"}}></div>
-    <Wrapper onClick={()=>{navigate("/product")}}>
-    <Image style={{backgroundImage: `url(${props.img2})`, backgroundSize:"cover"}}>
-       <div style={{paddingTop:"500px"}}> 
-       <Title style={{color:"black"}}>
-        {props.Title2}
-        </Title>
-        <SubTitle style={{color:"black"}}>
-        {props.SubTitle2}    
-        </SubTitle>
-            <div style={{marginBottom:"30px",marginLeft:"47px"}}><Button style={{padding:"0 29px 0 29px",backgroundColor:"black",color:"white"}} >{props.button2}</Button></div>
+    <Wrapper onClick={() => { navigate("/product",{state:{MHeading1:"MH2",SubHeading:"SH2"}}) }}>
+        <Image style={{ backgroundImage: `url(${props.img2})`, backgroundSize: "cover" }}>
+            <div style={{ paddingTop: "500px" }}>
+                <Title style={{ color: "black" }}>
+                    {props.Title2}
+                </Title>
+                <SubTitle style={{ color: "black" }}>
+                    {props.SubTitle2}
+                </SubTitle>
+                <div style={{ marginBottom: "30px", marginLeft: "47px" }}><Button style={{ padding: "0 29px 0 29px", backgroundColor: "black", color: "white" }}>{props.button2}</Button></div>
             </div>
         </Image>
     </Wrapper>
+
     <div style={{width:"90px"}}></div>
     </Main>
   )

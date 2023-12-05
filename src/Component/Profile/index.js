@@ -179,7 +179,7 @@ function Index() {
             <Grid>
                 <Gdiv  onClick={toggleIntrest}><div style={{fontSize:"20px",paddingBottom:"10px"}}>Add an Item</div><BsPlusCircle style={{height:"20px",width:"20px"}}/></Gdiv>
                    {dummyData.map((e)=>(
-                <Pdiv onClick={()=>{navigate("/product")}}>
+                <Pdiv onClick={()=>{navigate("/product",{state:{MHeading1:"Intrests",SubHeading:e.title}})}}>
                 <Image style={{backgroundImage: `url(${e.pic})`, backgroundSize:"cover"}}>
                     <Title>
                         <div style={{  marginLeft:"20px",color:"white",marginBottom:"20px",fontSize:"20px",fontWeight:"500"}}>{e.title}</div>

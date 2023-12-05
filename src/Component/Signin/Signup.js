@@ -170,10 +170,7 @@ function Signup() {
             <FiEye style={{height:"22px",width:"22px",padding:"0 0 0 20px"}} />
         </div>
         </Div>
-        <div style={{marginBottom:"20px"}} >
-        <div style={{color:"gray",fontSize:"12px",margin:"0px 0 10px 25px"}}> {error?<Error><RxCross2 style={{height:"17px",width:"17px",marginRight:"5px"}}/> <div>Minimum of 8 characters</div></Error>:<Success><BsCheck2 style={{height:"17px",width:"17px",marginRight:"5px"}} /><div>Minimum of 8 characters</div></Success>} </div>
-        <div style={{color:"gray",fontSize:"12px",marginLeft:"25px"}}> {error?<Error><RxCross2 style={{height:"17px",width:"17px",marginRight:"5px"}}/> <div>Uppercase, lowercase letters and one number</div></Error>:<Success><BsCheck2 style={{height:"17px",width:"17px",marginRight:"5px"}} /> <div>Uppercase, lowercase letters and one number"</div></Success>} </div>   
-        </div> 
+        
         <Div>
         <Select value={preference} onChange={(e)=>{setPrefrence(e.target.value)}} >
             <Choice disabled selected hidden>Shopping Prefrence</Choice>
