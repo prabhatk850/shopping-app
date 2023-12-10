@@ -16,6 +16,10 @@ margin-bottom: 90px;
   cursor: pointer;
 }
 
+@media (max-width: 830px){
+width: 90%;
+}
+
 `;
 const Main = styled.div`
 padding-right: 15px;
@@ -44,7 +48,7 @@ function Index(props) {
   const navigate = useNavigate();
   return (
     <Div>
-      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Text1,SubHeading:props.Subtext1}})}}>
+      <Main onClick={()=>{navigate("/product",{state:{MHeading1:props.Text,SubHeading:props.Subtext}})}}>
         <Image src={props.img}></Image>
         <Wrapper>
           <Container>

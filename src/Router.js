@@ -31,7 +31,7 @@ function Router() {
       <Route path="/signup" element={<Signup/>}/> 
       <Route path="/password" element={<Password/>}/> 
       <Route path="/productdescription" element={<ProductDes/>}/> 
-      <Route path="/sections/*" element={<Sections/>}/> 
+      <Route path="/sections" element={<Sections/>}/> 
       <Route path="/Profile" element={<Profile/>}/> 
       <Route path="/Setting" element={<Setting/>}/> 
       <Route path="/Favorite" element={<Favorite/>}/> 

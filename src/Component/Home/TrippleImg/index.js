@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const Image= styled.div`
 height: 540px;
 
+@media (max-width:830px){
+height: 350px;
+}
 `;
 const Main= styled.div`
 margin-bottom: 80px;

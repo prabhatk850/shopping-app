@@ -111,10 +111,13 @@ display: flex;
 align-items: center;
 justify-content: center;
 font-size: 15px;
+color: black;
 `;
 const Quantity = styled.div`
 display: flex;
+margin: 10px 0;
 align-items: center;
+color: gray;
 
 `;
 
@@ -179,14 +182,12 @@ function Index() {
                                     <Product>
                                         {e.type}
                                     </Product>
-                                    <div style={{display:"flex",marginBottom:"20px"}}>
                          <Size>{e.size}</Size>
-                         <Quantity>
+                         <Quantity>Quantity
               <Minus onClick={()=>{handleQuantityMinus(e._id)}}>-</Minus>
               <Countq>{e.quantity}</Countq>
               <Plus onClick={()=>{handleQuantityPlus(e._id)}}>+</Plus>
             </Quantity>
-                     </div>
                      <div style={{display:"flex"}}>
                          <div onClick={()=>{handlefav(e.name,e.type,e.price,e.pic)}} ><LiaHeart style={{height:"25px",width:"25px",marginRight:"20px"}}/></div>
                          <div  onClick={()=>{handleRemoveFromCart(e._id)}}><GoTrash style={{height:"25px",width:"25px"}}/></div>
