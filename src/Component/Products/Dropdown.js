@@ -56,7 +56,7 @@ width: 20px;
 
 
 
-function Dropdown(props) {
+function Dropdown({filterFunction}) {
   const [accordian,setAccordian]=useState(true)
   const [dummydata,setDummyData]=useState([])
 
@@ -104,7 +104,7 @@ function Dropdown(props) {
           <Ddown>
             {e.type.map((e)=>(
               <BData>
-            <Button  type='checkbox' ></Button>
+            <Button  type='checkbox' onChange={()=>filterFunction(e)} ></Button>
             
             {e}
             </BData>

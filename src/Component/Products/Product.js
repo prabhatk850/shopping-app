@@ -115,7 +115,6 @@ font-size: 17px;
 margin-right: 20px;
 display: flex;
 align-items: center;
-
 `;
 
 const Sort=styled.div`
@@ -129,21 +128,54 @@ justify-content: space-between;
 margin: 100px 45px 45px;
 `;
 
+const Grid=styled.div`
+display: grid;
+width: 100%;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 1px;
+height: 100vh;
+overflow-y: scroll;
+
+@media (max-width: 830px) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+`;
+
+const MDiv=styled.div`
+
+`;
+
 function Product(props) {
   const navigate=useNavigate()
   const[filter,SetFilter]=useState(true)
   const[productdata,SetProductdata]=useState([])
+  const[filteredData,setFilteredData]=useState(productdata)
+  const[dataToFilter,setDataToFilter]=useState("All")
+    
+  useEffect(()=>{
+     FetchProducts().then((result)=>{
+     SetProductdata(result.data)
+     setFilteredData(result.data)
+    
+    })
+  },[])
+
+ 
   
   const handleFilter=()=>{
     SetFilter(!filter)
   }
+  const filterFunction = (data) => {
+    console.log("firkst", filteredData);
+    let dataConvert = data === "Male" ? "Men's Shoes" : data === "Female" ? "Female's Shoes" : data==="Kid"? "Kid's Shoes" : "All";
+    console.log("firs", data, dataConvert);
+    setDataToFilter(dataConvert);
+  }
 
-  useEffect(()=>{
-    FetchProducts().then((result)=>{
-        SetProductdata(result.data)
-        console.log("product",productdata)
-    })
-  },[])
+  useEffect(() => {
+    const filteredProducts = dataToFilter === "All" ? productdata : productdata.filter((e) => e.type === dataToFilter);
+    setFilteredData(filteredProducts);
+  }, [dataToFilter]);
   
   return (
     
@@ -168,9 +200,9 @@ function Product(props) {
      </Filters>
     </Header>
    <Wrapper>
-      {filter? <Sidebar data={[{category:"Body Part",type:["Forearm","Biceps","Shoulder","Ribs","Calf"]},{category:"Style",type:["Linework","Illustrative","Blackwork","Minimalist","Text"]}]}/>:<div style={{width:"45px"}} />} 
-          <div style={{  display: "grid",width:"100%" ,gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap:"1px", height:"100vh",overflowY:"scroll" }}>
-          {productdata.map((e)=>(
+      <MDiv>{filter? <Sidebar filterFunction={filterFunction}/>:<div style={{width:"45px"}} />}</MDiv>
+          <Grid>
+          {filteredData.map((e)=>(
         
          
         <Div key={e._id}  onClick={()=>{navigate("/productdescription",{state:{
@@ -202,10 +234,10 @@ function Product(props) {
         </Div>
         ))}
        
-         </div> 
+         </Grid> 
     </Wrapper>
   </Baap>
   )
 }
 
-export default Product
+export default Product;

@@ -23,13 +23,14 @@ padding-left: 2px;
 font-size: 18px;
 `;
 
-function Sidebar({data}) {
+function Sidebar({filterFunction}) {
 
   const [dummyData,SetDummydata]= useState([])
 
 
   useEffect(()=>{
     Sidebardata().then((result)=>{
+      console.log("fi",result)
       SetDummydata(result.data)
     })
   },[])
@@ -38,7 +39,7 @@ function Sidebar({data}) {
   return (
     <Wrapper>
       {dummyData.map((e)=>(
-        e.catagory==="Shoes"?
+        e.catagory==="Versatile"?
         <Div>
           <Content>
             {e.content}
@@ -47,7 +48,7 @@ function Sidebar({data}) {
       
       ))}
 
-      <Dropdown />
+      <Dropdown filterFunction={filterFunction} />
        </Wrapper>
   )
 }

@@ -50,12 +50,12 @@ margin-bottom: 10px;
 font-size: 15px;
 
 `;
-const Colour = styled.div`
-color: gray;
-margin-bottom: 10px;
-font-size: 15px;
+// const Colour = styled.div`
+// color: gray;
+// margin-bottom: 10px;
+// font-size: 15px;
 
-`;
+// `;
 const Size = styled.div`
 color: gray;
 margin-right: 20px;

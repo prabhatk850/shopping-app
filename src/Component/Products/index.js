@@ -11,8 +11,7 @@ const Wrapper=styled.div`
 
 function Index() {
   const location = useLocation();
-  const {MHeading1,SubHeading} = location.state || {};
-  console.log("first",location)
+  const {MHeading1,SubHeading} = location.state || {}
 
   
   return (
